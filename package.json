@@ -1,0 +1,68 @@
+{
+  "name": "react-lorem-ipsum",
+  "version": "1.0.0",
+  "description": "React Component for Creating Lorem Ipsum Text as Placeholder",
+  "main": "dist/index.js",
+  "scripts": {
+    "test": "jest --verbose",
+    "start": "webpack-dev-server --mode development",
+    "transpileJS": "babel src -d dist --no-comments",
+    "transpileSASS": "node-sass --output-style compressed src/style.scss > dist/style.css",
+    "transpile": "npm run transpileJS && npm run transpileSASS",
+    "prepublishOnly": "npm run transpile",
+    "build": "webpack --mode production",
+    "deploy": "gh-pages -d examples/dist",
+    "publish:gh-pages": "npm run build && npm run deploy",
+    "publish:travis": "npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fatihtelis/react-lorem-ipsum.git"
+  },
+  "homepage": "https://github.com/fatihtelis/react-lorem-ipsum#readme",
+  "bugs": {
+    "url": "https://github.com/fatihtelis/react-lorem-ipsum/issues"
+  },
+  "keywords": [
+    "react",
+    "reactjs",
+    "component",
+    "lorem-ipsum",
+    "placeholder text"
+  ],
+  "author": "Fatih Telis <fatih.telis@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "@babel/cli": "^7.4.4",
+    "@babel/core": "^7.0.0",
+    "@babel/preset-env": "^7.0.0",
+    "@babel/preset-react": "^7.0.0",
+    "babel-eslint": "^10.0.1",
+    "babel-loader": "^8.0.0",
+    "css-loader": "^2.1.1",
+    "enzyme": "^3.10.0",
+    "enzyme-adapter-react-16": "^1.14.0",
+    "eslint": "^5.16.0",
+    "eslint-config-airbnb": "^17.1.0",
+    "eslint-plugin-import": "^2.17.3",
+    "eslint-plugin-jsx-a11y": "^6.2.1",
+    "eslint-plugin-react": "^7.13.0",
+    "gh-pages": "^2.0.1",
+    "html-webpack-plugin": "^3.2.0",
+    "jest": "^24.8.0",
+    "node-sass": "^4.12.0",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "sass-loader": "^7.1.0",
+    "style-loader": "^0.23.1",
+    "webpack": "^4.33.0",
+    "webpack-cli": "^3.3.2",
+    "webpack-dev-server": "^3.4.1"
+  },
+  "jest": {
+    "moduleNameMapper": {
+      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/__mocks__/fileMock.js",
+      "\\.(css|less)$": "<rootDir>/__mocks__/styleMock.js"
+    }
+  }
+}

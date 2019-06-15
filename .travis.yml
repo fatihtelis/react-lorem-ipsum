@@ -1,0 +1,25 @@
+language: node_js
+node_js:
+  - '10'
+
+cache: yarn
+
+branches:
+  only:
+    - master
+
+install:
+  - yarn
+  - yarn publish:travis
+
+script:
+  - yarn test
+
+deploy:
+  provider: pages
+  skip-cleanup: true
+  github-token: $GITHUB_TOKEN
+  target-branch: gh-pages
+  local-dir: examples/dist
+  on:
+    branch: master
