@@ -1,4 +1,4 @@
-# React Lorem Ipsum | Placeholder Text Generator for React
+# React Lorem Ipsum - Placeholder Text Generator for React
 
 **React Lorem Ipsum** is a React Component that creates Lorem Ipsum text for using as placeholder in your applications.
 
@@ -18,7 +18,7 @@ npm install --save react-lorem-ipsum
 
 ## Demo
 
-[https://npmjs.org/package/react-lorem-ipsum](https://npmjs.org/package/react-lorem-ipsum)
+[https://fatihtelis.github.io/react-lorem-ipsum](https://fatihtelis.github.io/react-lorem-ipsum)
 
 ## Props
 
