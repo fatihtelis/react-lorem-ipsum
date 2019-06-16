@@ -36,10 +36,9 @@ const LoremIpsum = ({
     let awis = parseInt(avgWordsPerSentence, 10);
     // Replace with defaultProps value if it could not be parsed
     if (Number.isNaN(awis)) awis = defaultProps.avgWordsPerSentence;
-
     let sentence = '';
     // Standard Deviation
-    const stDev = getStandardDeviation(awis * stDevPercentage);
+    const stDev = getStandardDeviation(awis, stDevPercentage);
     const sentenceLength = randomPositiveFromRange(awis - stDev, awis + stDev);
     for (let i = 0; i < sentenceLength; i += 1) {
       const word = getRandomWord();
@@ -58,7 +57,7 @@ const LoremIpsum = ({
 
     let paragraph = '';
     // Standard Deviation
-    const stDev = getStandardDeviation(asip * stDevPercentage);
+    const stDev = getStandardDeviation(asip, stDevPercentage);
     const paragraphLength = randomPositiveFromRange(asip - stDev, asip + stDev);
     for (let i = 0; i < paragraphLength; i += 1) {
       const swli = typeof startWithLoremIpsum === 'boolean'
@@ -79,6 +78,7 @@ const LoremIpsum = ({
     for (let i = 0; i < pCount; i += 1) {
       paragraphs.push(createParagraph({ firstParagraph: i === 0 }));
     }
+
     return paragraphs;
   };
 
