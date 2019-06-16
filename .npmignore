@@ -1,6 +1,10 @@
 #Folders
 src
 examples
+__mocks__
+
+#Dist
+dist/tests
 
 #Config files
 .babelrc
@@ -10,4 +14,5 @@ examples
 webpack.config.js
 
 #Other
+README.md
 .DS_Store

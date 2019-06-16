@@ -2,6 +2,14 @@
 
 **React Lorem Ipsum** is a React Component that creates Lorem Ipsum text for using as placeholder in your applications.
 
+[![NPM version][npm-image]][npm-url]
+[![npm download][download-image]][download-url]
+
+[npm-image]: http://img.shields.io/npm/v/react-lorem-ipsum.svg?style=flat-square
+[npm-url]: http://npmjs.org/package/react-lorem-ipsum
+[download-image]: https://img.shields.io/npm/dm/react-lorem-ipsum.svg?style=flat-square
+[download-url]: https://npmjs.org/package/react-lorem-ipsum
+
 ## Install
 
 ```bash
@@ -56,3 +64,7 @@ render(
   </p>
 </div>
 ```
+
+## License
+
+`react-lorem-ipsum` is released under the MIT license.
