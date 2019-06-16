@@ -10,12 +10,12 @@ npm install --save react-lorem-ipsum
 
 ## Props
 
-| Name                    | Type   | Default | Description                                                                |
-| ----------------------- | ------ | ------- | -------------------------------------------------------------------------- |
-| pCount                  | number | 1       | Number of paragraphs created                                               |
-| avgWordsInSentence      | number | 10      | Avarage number of words created for each sentence                          |
-| avgSentencesInParagraph | number | 10      | Avarage number of sentences created for each paragraph                     |
-| startWithLoremIpsum     | bool   | true    | Start with 'Lorem ipsum odor amet...' as first sentence to first paragraph |
+| Name                     | Type   | Default | Description                                                                               |
+| ------------------------ | ------ | ------- | ----------------------------------------------------------------------------------------- |
+| pCount                   | number | 1       | Number of paragraphs created                                                              |
+| avgWordsPerSentence      | number | 8       | Avarage number of words created for each sentence (standard deviation is fixed ±20%)      |
+| avgSentencesPerParagraph | number | 8       | Avarage number of sentences created for each paragraph (standard deviation is fixed ±20%) |
+| startWithLoremIpsum      | bool   | true    | Start with 'Lorem ipsum odor amet...' to first sentence of first paragraph                |
 
 ## Example
 

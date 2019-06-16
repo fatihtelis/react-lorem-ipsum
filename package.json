@@ -6,9 +6,9 @@
   "scripts": {
     "test": "jest --verbose",
     "start": "webpack-dev-server --mode development",
-    "transpileJS": "babel src -d dist --no-comments",
+    "transpileJS": "babel src -d dist --no-comments --ignore **/*.test.js",
     "transpileSASS": "node-sass --output-style compressed src/style.scss > dist/style.css",
-    "transpile": "npm run transpileJS && npm run transpileSASS",
+    "transpile": "npm run transpileJS",
     "prepublishOnly": "npm run transpile",
     "build": "webpack --mode production",
     "deploy": "gh-pages -d examples/dist",

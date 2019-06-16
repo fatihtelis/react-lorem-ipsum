@@ -2,31 +2,45 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import words from './data/words.json';
 
+// Default Props of the Component
 const defaultProps = {
-  p: 1,
-  avgWordInSentence: 5,
-  avgSentenceInParagraph: 5,
+  pCount: 1,
+  avgWordsPerSentence: 8,
+  avgSentencesPerParagraph: 8,
   startWithLoremIpsum: true,
 };
 
 const LoremIpsum = ({
-  p, avgWordInSentence, avgSentenceInParagraph, startWithLoremIpsum,
+  pCount,
+  avgWordsPerSentence,
+  avgSentencesPerParagraph,
+  startWithLoremIpsum,
 }) => {
-  // Get random integer from a range
-  const randomFromRange = (min, max) => Math.round(Math.random() * (max - min)) + min;
+  // Standard deviation percentage for words and sentences
+  const stDevPercentage = 0.2;
 
-  // Get a random word from Latin word list
-  const getRandomWord = () => words[randomFromRange(0, words.length - 1)];
+  // Get random integers from a range great equal or greater than 1
+  const randomPositiveFromRange = (min, max) => {
+    const random = Math.round(Math.random() * (max - min)) + min;
+    return Math.max(1, random);
+  };
+
+  const getStandardDeviation = (value, percentage) => Math.round(value * percentage);
+
+  // Get a random word from Latin wPositiveord list
+  const getRandomWord = () => words[randomPositiveFromRange(0, words.length - 1)];
 
   // Create a Sentence by using random words
   const createSentence = () => {
     // Try to parse if prop is sent in string format
-    let awis = parseInt(avgWordInSentence, 10);
+    let awis = parseInt(avgWordsPerSentence, 10);
     // Replace with defaultProps value if it could not be parsed
-    if (Number.isNaN(awis)) awis = defaultProps.avgWordInSentence;
+    if (Number.isNaN(awis)) awis = defaultProps.avgWordsPerSentence;
 
     let sentence = '';
-    const sentenceLength = randomFromRange(awis - 2, awis + 2);
+    // Standard Deviation
+    const stDev = getStandardDeviation(awis * stDevPercentage);
+    const sentenceLength = randomPositiveFromRange(awis - stDev, awis + stDev);
     for (let i = 0; i < sentenceLength; i += 1) {
       const word = getRandomWord();
       sentence += `${word} `;
@@ -38,12 +52,14 @@ const LoremIpsum = ({
   // Create a paragraph by joining sentences
   const createParagraph = ({ firstParagraph }) => {
     // Try to parse if prop is sent in string format
-    let asip = parseInt(avgSentenceInParagraph, 10);
+    let asip = parseInt(avgSentencesPerParagraph, 10);
     // Replace with defaultProps value if it could not be parsed
-    if (Number.isNaN(asip)) asip = defaultProps.avgSentenceInParagraph;
+    if (Number.isNaN(asip)) asip = defaultProps.avgSentencesPerParagraph;
 
     let paragraph = '';
-    const paragraphLength = randomFromRange(asip - 2, asip + 2);
+    // Standard Deviation
+    const stDev = getStandardDeviation(asip * stDevPercentage);
+    const paragraphLength = randomPositiveFromRange(asip - stDev, asip + stDev);
     for (let i = 0; i < paragraphLength; i += 1) {
       const swli = typeof startWithLoremIpsum === 'boolean'
         ? startWithLoremIpsum
@@ -60,7 +76,7 @@ const LoremIpsum = ({
   // Create a Lorem Ipsum block with desired paragraph count
   const createLoremIpsum = () => {
     const paragraphs = [];
-    for (let i = 0; i < p; i += 1) {
+    for (let i = 0; i < pCount; i += 1) {
       paragraphs.push(createParagraph({ firstParagraph: i === 0 }));
     }
     return paragraphs;
@@ -70,16 +86,16 @@ const LoremIpsum = ({
 };
 
 LoremIpsum.propTypes = {
-  p: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-  avgWordInSentence: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-  avgSentenceInParagraph: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  pCount: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  avgWordsPerSentence: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  avgSentencesPerParagraph: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   startWithLoremIpsum: PropTypes.bool,
 };
 
 LoremIpsum.defaultProps = {
-  p: defaultProps.p,
-  avgWordInSentence: defaultProps.avgWordInSentence,
-  avgSentenceInParagraph: defaultProps.avgSentenceInParagraph,
+  pCount: defaultProps.pCount,
+  avgWordsPerSentence: defaultProps.avgWordsPerSentence,
+  avgSentencesPerParagraph: defaultProps.avgSentencesPerParagraph,
   startWithLoremIpsum: defaultProps.startWithLoremIpsum,
 };
 export default LoremIpsum;

@@ -4,33 +4,33 @@ import './style.scss';
 
 const App = () => {
   const initialProps = {
-    p: 4,
-    avgWordInSentence: 8,
-    avgSentenceInParagraph: 8,
+    pCount: 1,
+    avgWordsPerSentence: 8,
+    avgSentencesPerParagraph: 8,
     startWithLoremIpsum: true,
   };
-  const [p, setP] = useState(initialProps.p);
-  const [avgWordInSentence, setAvgWordInSentence] = useState(initialProps.avgWordInSentence);
-  const [avgSentenceInParagraph, setAvgSentenceInParagraph] = useState(
-    initialProps.avgSentenceInParagraph,
+  const [pCount, setPCount] = useState(initialProps.pCount);
+  const [avgWordsPerSentence, setAvgWordsPerSentence] = useState(initialProps.avgWordsPerSentence);
+  const [avgSentencesPerParagraph, setAvgSentencesPerParagraph] = useState(
+    initialProps.avgSentencesPerParagraph,
   );
   const [startWithLoremIpsum, setStartWithLoremIpsum] = useState(initialProps.startWithLoremIpsum);
   const handlePChange = (e) => {
-    setP(e.target.value);
+    setPCount(e.target.value);
   };
   const handleAvgWordInSentenceChange = (e) => {
-    setAvgWordInSentence(e.target.value);
+    setAvgWordsPerSentence(e.target.value);
   };
   const handleAvgSentenceInParagraphChange = (e) => {
-    setAvgSentenceInParagraph(e.target.value);
+    setAvgSentencesPerParagraph(e.target.value);
   };
   const handleStartWithLoremIpsumChange = (e) => {
     setStartWithLoremIpsum(e.target.checked);
   };
   const resetProps = () => {
-    setP(initialProps.p);
-    setAvgWordInSentence(initialProps.avgWordInSentence);
-    setAvgSentenceInParagraph(initialProps.avgSentenceInParagraph);
+    setPCount(initialProps.pCount);
+    setAvgWordsPerSentence(initialProps.avgWordsPerSentence);
+    setAvgSentencesPerParagraph(initialProps.avgSentencesPerParagraph);
   };
   return (
     <>
@@ -64,40 +64,39 @@ const App = () => {
             <h2>Props</h2>
             <div className="prop">
               <label>
-                {`Paragraph Count (${p})`}
+                {`Paragraph Count (${pCount})`}
                 <input
                   className="slider"
                   type="range"
                   min="1"
                   max="50"
-                  value={p}
+                  value={pCount}
                   onChange={handlePChange}
                 />
               </label>
             </div>
             <div className="prop">
               <label>
-                {`Average Word in Sentence (${avgWordInSentence})`}
-                {' '}
+                {`Average Words Per Sentence (${avgWordsPerSentence})`}
                 <input
                   className="slider"
                   type="range"
                   min="4"
                   max="20"
-                  value={avgWordInSentence}
+                  value={avgWordsPerSentence}
                   onChange={handleAvgWordInSentenceChange}
                 />
               </label>
             </div>
             <div className="prop">
               <label>
-                {`Average Sentence In Paragraph (${avgSentenceInParagraph})`}
+                {`Average Sentences Per Paragraph (${avgSentencesPerParagraph})`}
                 <input
                   className="slider"
                   type="range"
                   min="4"
                   max="20"
-                  value={avgSentenceInParagraph}
+                  value={avgSentencesPerParagraph}
                   onChange={handleAvgSentenceInParagraphChange}
                 />
               </label>
@@ -121,9 +120,9 @@ const App = () => {
             <h2>Component</h2>
             <div className="code">
               <div className="line">{'<LoremIpsum'}</div>
-              <div className="line">{`p={${p}}`}</div>
-              <div className="line">{`avgWordInSentence={${avgWordInSentence}}`}</div>
-              <div className="line">{`avgSentenceInParagraph={${avgSentenceInParagraph}}`}</div>
+              <div className="line">{`pCount={${pCount}}`}</div>
+              <div className="line">{`avgWordsPerSentence={${avgWordsPerSentence}}`}</div>
+              <div className="line">{`avgSentencesPerParagraph={${avgSentencesPerParagraph}}`}</div>
               <div className="line">
                 {`startWithLoremIpsum={${startWithLoremIpsum ? 'true' : 'false'}}`}
               </div>
@@ -134,9 +133,9 @@ const App = () => {
         <section className="output">
           <h2>Output</h2>
           <LoremIpsum
-            p={p}
-            avgWordInSentence={avgWordInSentence}
-            avgSentenceInParagraph={avgSentenceInParagraph}
+            pCount={pCount}
+            avgWordsPerSentence={avgWordsPerSentence}
+            avgSentencesPerParagraph={avgSentencesPerParagraph}
             startWithLoremIpsum={startWithLoremIpsum}
           />
         </section>

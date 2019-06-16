@@ -12,7 +12,7 @@ describe('Lorem Ipsum', () => {
     expect(wrapper.exists()).toBe(true);
   });
   test('exists with data', () => {
-    const wrapper = shallow(<LoremIpsum text="Lorem Ipsum" />);
+    const wrapper = shallow(<LoremIpsum pCount={5} />);
     expect(wrapper.exists()).toBe(true);
   });
 });

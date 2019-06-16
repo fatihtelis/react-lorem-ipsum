@@ -1,7 +1,13 @@
+#Folders
 src
 examples
+
+#Config files
 .babelrc
 .eslintrc
 .gitignore
+.travis.yml
 webpack.config.js
+
+#Other
 .DS_Store
