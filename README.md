@@ -1,12 +1,16 @@
-# React Lorem Ipsum - Placeholder Text Generator for React
+# React Lorem Ipsum
 
-**React Lorem Ipsum** is a React Component that creates Lorem Ipsum text for using as placeholder in your applications.
+**React Lorem Ipsum** is a React Component **generates Lorem Ipsum placeholder text**.
+
+When backend API is not ready for data fetching and you have to make Frontend Development with static data until it comes, `react-lorem-ipsum` will create your texts for you easily.
+
+React Lorem Ipsum is a zero-dependency lightweight (~6 kB) module.
 
 [![NPM version][npm-image]][npm-url]
 [![npm download][download-image]][download-url]
 
-[npm-image]: http://img.shields.io/npm/v/react-lorem-ipsum.svg?style=flat-square
-[npm-url]: http://npmjs.org/package/react-lorem-ipsum
+[npm-image]: https://img.shields.io/npm/v/react-lorem-ipsum.svg?style=flat-square
+[npm-url]: https://npmjs.org/package/react-lorem-ipsum
 [download-image]: https://img.shields.io/npm/dm/react-lorem-ipsum.svg?style=flat-square
 [download-url]: https://npmjs.org/package/react-lorem-ipsum
 
