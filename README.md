@@ -16,6 +16,10 @@
 npm install --save react-lorem-ipsum
 ```
 
+## Demo
+
+[https://npmjs.org/package/react-lorem-ipsum](https://npmjs.org/package/react-lorem-ipsum)
+
 ## Props
 
 | Name                     | Type   | Default | Description                                                                               |
