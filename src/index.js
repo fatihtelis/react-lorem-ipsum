@@ -35,7 +35,7 @@ const LoremIpsum = ({
     return finalValue;
   };
 
-  // Get a random word from Latin wPositiveord list
+  // Get a random word from Latin word list
   const getRandomWord = () => words[randomPositiveFromRange(0, words.length - 1)];
 
   // Get a punctuation for middle of the sentence randomly
