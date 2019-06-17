@@ -38,8 +38,8 @@ yarn add react-lorem-ipsum
 | Name                     | Type   | Default | Description                                                                               |
 | ------------------------ | ------ | ------- | ----------------------------------------------------------------------------------------- |
 | pCount                   | number | 1       | Number of paragraphs created                                                              |
-| avgWordsPerSentence      | number | 8       | Avarage number of words created for each sentence (standard deviation is fixed ±20%)      |
-| avgSentencesPerParagraph | number | 8       | Avarage number of sentences created for each paragraph (standard deviation is fixed ±20%) |
+| avgWordsPerSentence      | number | 8       | Avarage number of words created for each sentence (standard deviation is fixed ±25%)      |
+| avgSentencesPerParagraph | number | 8       | Avarage number of sentences created for each paragraph (standard deviation is fixed ±25%) |
 | startWithLoremIpsum      | bool   | true    | Start with 'Lorem ipsum odor amet...' to first sentence of first paragraph                |
 
 ## Example
@@ -64,20 +64,18 @@ render(
 ```html
 <div class="wrapper">
   <p>
-    Lorem ipsum odor amet, interdum ultricies scelerisque. Fusce gravida tellus condimentum
-    penatibus gravida senectus ligula maximus. Laoreet ad bibendum vel facilisis lacinia sem
-    nascetur. Congue nec egestas netus faucibus convallis conubia. Nam potenti porttitor dignissim
-    blandit mus integer velit class. Luctus sed suscipit luctus pellentesque massa ultrices senectus
-    erat. Convallis finibus congue placerat vel donec. Dui eros commodo arcu lobortis ad mattis
-    hendrerit habitasse. Cubilia facilisis ultricies habitasse volutpat mattis eros suscipit
-    adipiscing. Pulvinar ligula etiam magna enim netus eleifend.
+    Lorem ipsum odor amet, consectetuer adipiscing elit. Ac purus in massa egestas mollis varius;
+    dignissim elementum. Mollis tincidunt mattis hendrerit dolor eros enim, nisi ligula ornare.
+    Hendrerit parturient habitant pharetra rutrum gravida porttitor eros feugiat. Mollis elit
+    sodales taciti duis praesent id. Consequat urna vitae morbi nunc congue. Justo molestie tellus
+    adipiscing sed himenaeos primis amet quam. Rutrum magna luctus urna suspendisse bibendum elit.
   </p>
   <p>
-    Mattis libero porta bibendum sed dapibus mattis sociosqu a sapien. Etiam cras ante venenatis
-    fames et nunc cursus facilisis ultricies. Turpis fames felis justo rhoncus donec fermentum.
-    Donec libero ornare auctor mollis vel odio duis. Posuere rhoncus fringilla proin egestas diam
-    primis. Porta suspendisse lorem ridiculus dapibus inceptos quam euismod risus. Proin nec sed
-    cras mattis dolor eros blandit.
+    Non etiam tempor id arcu magna ante eget. Nec per posuere cubilia cras porttitor condimentum
+    orci suscipit. Leo maecenas in tristique, himenaeos elementum placerat. Taciti rutrum nostra,
+    eget cursus velit ultricies. Quam molestie tellus himenaeos cubilia congue vivamus ultricies.
+    Interdum praesent ut penatibus fames eros ad consectetur sed. Posuere vehicula id integer fusce
+    cursus nulla ipsum.
   </p>
 </div>
 ```

@@ -11,7 +11,7 @@ const defaultProps = {
 };
 
 // Standard deviation percentage for words and sentences
-const stDevPercentage = 0.2;
+const stDevPercentage = 0.25;
 
 const LoremIpsum = ({
   pCount,
@@ -19,11 +19,11 @@ const LoremIpsum = ({
   avgSentencesPerParagraph,
   startWithLoremIpsum,
 }) => {
+  // Get random integers from a range
+  const randomFromRange = (min, max) => Math.round(Math.random() * (max - min)) + min;
+
   // Get random integers from a range great equal or greater than 1
-  const randomPositiveFromRange = (min, max) => {
-    const random = Math.round(Math.random() * (max - min)) + min;
-    return Math.max(1, random);
-  };
+  const randomPositiveFromRange = (min, max) => Math.max(1, randomFromRange(min, max));
 
   // Get standard deviation amount by using percentage
   const getStandardDeviation = (value, percentage) => Math.ceil(value * percentage);
@@ -38,24 +38,51 @@ const LoremIpsum = ({
   // Get a random word from Latin wPositiveord list
   const getRandomWord = () => words[randomPositiveFromRange(0, words.length - 1)];
 
+  // Get a punctuation for middle of the sentence randomly
+  const getMidPunctuation = (sentenceLength) => {
+    const punctuations = [',', ';'];
+    let punctuation;
+    let position;
+    if (sentenceLength > 6) {
+      // 25% probability for punctuation
+      const hasPunctuation = Math.random() <= 0.25;
+      if (hasPunctuation) {
+        position = randomFromRange(2, sentenceLength - 3);
+        punctuation = punctuations[randomFromRange(0, punctuations.length - 1)];
+      }
+    }
+    return { punctuation, position };
+  };
+
+  // Get a punctuation for end of the sentence randomly
+  const getEndPunctuation = () => {
+    const random = Math.random();
+    // 2.5% probability exclamation mark
+    if (random > 0.975) return '!';
+    // 7.5% probability question mark
+    if (random > 0.9) return '?';
+    // 90% probability dot
+    return '.';
+  };
+
   // Create a Sentence by using random words
   const createSentence = ({ withLoremIpsum }) => {
+    if (withLoremIpsum) return 'Lorem ipsum odor amet, consectetuer adipiscing elit.';
     const awps = parseIntWithDefault(avgWordsPerSentence, defaultProps.avgWordsPerSentence);
-    let sentence = withLoremIpsum ? 'Lorem ipsum odor amet, ' : '';
+
     const stDev = getStandardDeviation(awps, stDevPercentage);
     const sentenceLength = randomPositiveFromRange(awps - stDev, awps + stDev);
-    const remainingSentenceLength = withLoremIpsum
-      ? Math.max(3, sentenceLength - 4)
-      : sentenceLength;
-    for (let i = 0; i < remainingSentenceLength; i += 1) {
+    const midPunctuation = getMidPunctuation(sentenceLength);
+    let sentence = '';
+    for (let i = 0; i < sentenceLength; i += 1) {
       const word = getRandomWord();
-      sentence += `${word} `;
+      sentence += `${word}${midPunctuation.position === i ? midPunctuation.punctuation : ''} `;
     }
     sentence = `${sentence.charAt(0).toUpperCase()
       + sentence
         .slice(1)
         .toLowerCase()
-        .trim()}.`;
+        .trim()}${getEndPunctuation()}`;
     return sentence;
   };
 
@@ -86,11 +113,10 @@ const LoremIpsum = ({
     for (let i = 0; i < p; i += 1) {
       paragraphs.push(createParagraph({ firstParagraph: i === 0 }));
     }
-
     return paragraphs;
   };
 
-  return <>{createLoremIpsum()}</>;
+  return createLoremIpsum();
 };
 
 LoremIpsum.propTypes = {
