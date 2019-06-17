@@ -10,64 +10,70 @@ const defaultProps = {
   startWithLoremIpsum: true,
 };
 
+// Standard deviation percentage for words and sentences
+const stDevPercentage = 0.2;
+
 const LoremIpsum = ({
   pCount,
   avgWordsPerSentence,
   avgSentencesPerParagraph,
   startWithLoremIpsum,
 }) => {
-  // Standard deviation percentage for words and sentences
-  const stDevPercentage = 0.2;
-
   // Get random integers from a range great equal or greater than 1
   const randomPositiveFromRange = (min, max) => {
     const random = Math.round(Math.random() * (max - min)) + min;
     return Math.max(1, random);
   };
 
-  const getStandardDeviation = (value, percentage) => Math.round(value * percentage);
+  // Get standard deviation amount by using percentage
+  const getStandardDeviation = (value, percentage) => Math.ceil(value * percentage);
+
+  // Try to parse a value and return default value if it could not parsed as number
+  const parseIntWithDefault = (value, defaultValue) => {
+    let finalValue = parseInt(value, 10);
+    if (Number.isNaN(finalValue)) finalValue = defaultValue;
+    return finalValue;
+  };
 
   // Get a random word from Latin wPositiveord list
   const getRandomWord = () => words[randomPositiveFromRange(0, words.length - 1)];
 
   // Create a Sentence by using random words
-  const createSentence = () => {
-    // Try to parse if prop is sent in string format
-    let awis = parseInt(avgWordsPerSentence, 10);
-    // Replace with defaultProps value if it could not be parsed
-    if (Number.isNaN(awis)) awis = defaultProps.avgWordsPerSentence;
-    let sentence = '';
-    // Standard Deviation
-    const stDev = getStandardDeviation(awis, stDevPercentage);
-    const sentenceLength = randomPositiveFromRange(awis - stDev, awis + stDev);
-    for (let i = 0; i < sentenceLength; i += 1) {
+  const createSentence = ({ withLoremIpsum }) => {
+    const awps = parseIntWithDefault(avgWordsPerSentence, defaultProps.avgWordsPerSentence);
+    let sentence = withLoremIpsum ? 'Lorem ipsum odor amet, ' : '';
+    const stDev = getStandardDeviation(awps, stDevPercentage);
+    const sentenceLength = randomPositiveFromRange(awps - stDev, awps + stDev);
+    const remainingSentenceLength = withLoremIpsum
+      ? Math.max(3, sentenceLength - 4)
+      : sentenceLength;
+    for (let i = 0; i < remainingSentenceLength; i += 1) {
       const word = getRandomWord();
       sentence += `${word} `;
     }
-    sentence = `${sentence.charAt(0).toUpperCase() + sentence.slice(1).trim()}.`;
+    sentence = `${sentence.charAt(0).toUpperCase()
+      + sentence
+        .slice(1)
+        .toLowerCase()
+        .trim()}.`;
     return sentence;
   };
 
   // Create a paragraph by joining sentences
   const createParagraph = ({ firstParagraph }) => {
-    // Try to parse if prop is sent in string format
-    let asip = parseInt(avgSentencesPerParagraph, 10);
-    // Replace with defaultProps value if it could not be parsed
-    if (Number.isNaN(asip)) asip = defaultProps.avgSentencesPerParagraph;
-
+    const aspp = parseIntWithDefault(
+      avgSentencesPerParagraph,
+      defaultProps.avgSentencesPerParagraph,
+    );
     let paragraph = '';
-    // Standard Deviation
-    const stDev = getStandardDeviation(asip, stDevPercentage);
-    const paragraphLength = randomPositiveFromRange(asip - stDev, asip + stDev);
+    const stDev = getStandardDeviation(aspp, stDevPercentage);
+    const paragraphLength = randomPositiveFromRange(aspp - stDev, aspp + stDev);
     for (let i = 0; i < paragraphLength; i += 1) {
       const swli = typeof startWithLoremIpsum === 'boolean'
         ? startWithLoremIpsum
         : defaultProps.startWithLoremIpsum;
-      if (i === 0 && firstParagraph && swli) {
-        paragraph += `Lorem ipsum odor amet, ${getRandomWord()} ${getRandomWord()} ${getRandomWord()}. `;
-      } else {
-        paragraph += `${createSentence()} `;
-      }
+      const withLoremIpsum = !!(i === 0 && firstParagraph && swli);
+      paragraph += `${createSentence({ withLoremIpsum })} `;
     }
     return <p key={paragraph}>{paragraph.trim()}</p>;
   };

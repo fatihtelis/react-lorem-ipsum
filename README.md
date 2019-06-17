@@ -1,10 +1,10 @@
 # React Lorem Ipsum
 
-**React Lorem Ipsum** is a React Component **generates Lorem Ipsum placeholder text**.
+**React Lorem Ipsum** is a React Component that **generates placeholder text**.
 
-When backend API is not ready for data fetching and you have to make Frontend Development with static data until it comes, `react-lorem-ipsum` will create your texts for you easily.
+When backend API is not ready for data fetching and you have to make Frontend Development with static data (gibberish text) until it comes, `react-lorem-ipsum` will create your texts for you easily.
 
-React Lorem Ipsum is a zero-dependency lightweight (~4 kB) package.
+React Lorem Ipsum is a zero-dependency lightweight package.
 
 [![NPM version][npm-image]][npm-url]
 [![npm download][download-image]][download-url]
@@ -44,7 +44,7 @@ yarn add react-lorem-ipsum
 
 ## Example
 
-**React Code**
+**Code**
 
 ```js
 import React from 'react';
