@@ -4,20 +4,29 @@
 
 When backend API is not ready for data fetching and you have to make Frontend Development with static data until it comes, `react-lorem-ipsum` will create your texts for you easily.
 
-React Lorem Ipsum is a zero-dependency lightweight (~6 kB) module.
+React Lorem Ipsum is a zero-dependency lightweight (~4 kB) package.
 
 [![NPM version][npm-image]][npm-url]
 [![npm download][download-image]][download-url]
+[![npm size][size-image]][size-url]
 
 [npm-image]: https://img.shields.io/npm/v/react-lorem-ipsum.svg?style=flat-square
 [npm-url]: https://npmjs.org/package/react-lorem-ipsum
 [download-image]: https://img.shields.io/npm/dm/react-lorem-ipsum.svg?style=flat-square
 [download-url]: https://npmjs.org/package/react-lorem-ipsum
+[size-image]: https://img.shields.io/bundlephobia/min/react-lorem-ipsum.svg
+[size-url]: https://npmjs.org/package/react-lorem-ipsum
 
 ## Install
 
 ```bash
-npm install --save react-lorem-ipsum
+npm install react-lorem-ipsum
+```
+
+or
+
+```bash
+yarn add react-lorem-ipsum
 ```
 
 ## Demo

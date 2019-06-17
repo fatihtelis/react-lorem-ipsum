@@ -14,5 +14,4 @@ dist/tests
 webpack.config.js
 
 #Other
-README.md
 .DS_Store

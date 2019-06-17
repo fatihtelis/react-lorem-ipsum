@@ -75,7 +75,9 @@ const LoremIpsum = ({
   // Create a Lorem Ipsum block with desired paragraph count
   const createLoremIpsum = () => {
     const paragraphs = [];
-    for (let i = 0; i < pCount; i += 1) {
+    let p = parseInt(pCount, 10);
+    if (Number.isNaN(p)) p = defaultProps.pCount;
+    for (let i = 0; i < p; i += 1) {
       paragraphs.push(createParagraph({ firstParagraph: i === 0 }));
     }
 
