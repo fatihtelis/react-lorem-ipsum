@@ -1,6 +1,6 @@
 {
   "name": "react-lorem-ipsum",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "React Component for Creating Lorem Ipsum Text as Placeholder",
   "main": "dist/index.js",
   "scripts": {
