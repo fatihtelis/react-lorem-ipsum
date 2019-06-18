@@ -35,7 +35,7 @@ yarn add react-lorem-ipsum
 
 [https://fatihtelis.github.io/react-lorem-ipsum](https://fatihtelis.github.io/react-lorem-ipsum)
 
-## How to import
+## How to Import
 
 ```js
 import LoremIpsum, { Name, Surname, FullName, Username } from 'react-lorem-ipsum';
@@ -54,13 +54,15 @@ import LoremIpsum, { Name, Surname, FullName, Username } from 'react-lorem-ipsum
 
 #### Name, FullName
 
-| Name   | Type   | Default | Description                                                                                 |
-| ------ | ------ | ------- | ------------------------------------------------------------------------------------------- |
-| gender | string | 'all'   | Gender for the generated name or full name. Possible values are 'all', 'male' and 'female'. |
+| Name   | Type   | Default | Description                                                                                             |
+| ------ | ------ | ------- | ------------------------------------------------------------------------------------------------------- |
+| gender | string | 'all'   | Gender for the generated name or full name. Possible values are **'all'**, **'male'** and **'female'**. |
 
-##### Surname, Username
+#### Surname, Username
 
-Surname and Username does not take any props. They just create random surnames and usernames respectively.
+| Props                                                                                                          |
+| -------------------------------------------------------------------------------------------------------------- |
+| Surname and Username **does not take any props**. They just create random surnames and usernames respectively. |
 
 ## Example
 
