@@ -1,5 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Name from './user/name';
+import Surname from './user/surname';
+import FullName from './user/fullname';
+import Username from './user/username';
+import {
+  randomFromRange,
+  randomPositiveFromRange,
+  getStandardDeviation,
+  parseIntWithDefault,
+} from './utils';
 import words from './data/words.json';
 
 // Default Props of the Component
@@ -19,24 +29,8 @@ const LoremIpsum = ({
   avgSentencesPerParagraph,
   startWithLoremIpsum,
 }) => {
-  // Get random integers from a range
-  const randomFromRange = (min, max) => Math.round(Math.random() * (max - min)) + min;
-
-  // Get random integers from a range great equal or greater than 1
-  const randomPositiveFromRange = (min, max) => Math.max(1, randomFromRange(min, max));
-
-  // Get standard deviation amount by using percentage
-  const getStandardDeviation = (value, percentage) => Math.ceil(value * percentage);
-
-  // Try to parse a value and return default value if it could not parsed as number
-  const parseIntWithDefault = (value, defaultValue) => {
-    let finalValue = parseInt(value, 10);
-    if (Number.isNaN(finalValue)) finalValue = defaultValue;
-    return finalValue;
-  };
-
   // Get a random word from Latin word list
-  const getRandomWord = () => words[randomPositiveFromRange(0, words.length - 1)];
+  const getRandomWord = () => words[randomFromRange(0, words.length - 1)];
 
   // Get a punctuation for middle of the sentence randomly
   const getMidPunctuation = (sentenceLength) => {
@@ -131,5 +125,9 @@ LoremIpsum.defaultProps = {
   avgWordsPerSentence: defaultProps.avgWordsPerSentence,
   avgSentencesPerParagraph: defaultProps.avgSentencesPerParagraph,
   startWithLoremIpsum: defaultProps.startWithLoremIpsum,
+};
+
+export {
+  Name, Surname, FullName, Username,
 };
 export default LoremIpsum;
