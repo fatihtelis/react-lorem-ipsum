@@ -8,6 +8,7 @@ const App = () => {
     avgWordsPerSentence: 8,
     avgSentencesPerParagraph: 8,
     startWithLoremIpsum: true,
+    type: 'html',
   };
   const [pCount, setPCount] = useState(initialProps.pCount);
   const [avgWordsPerSentence, setAvgWordsPerSentence] = useState(initialProps.avgWordsPerSentence);

@@ -45,12 +45,13 @@ import LoremIpsum, { Name, Surname, FullName, Username } from 'react-lorem-ipsum
 
 #### LoremIpsum
 
-| Name                     | Type   | Default | Description                                                                               |
-| ------------------------ | ------ | ------- | ----------------------------------------------------------------------------------------- |
-| pCount                   | number | 1       | Number of paragraphs created                                                              |
-| avgWordsPerSentence      | number | 8       | Avarage number of words created for each sentence (standard deviation is fixed ±25%)      |
-| avgSentencesPerParagraph | number | 8       | Avarage number of sentences created for each paragraph (standard deviation is fixed ±25%) |
-| startWithLoremIpsum      | bool   | true    | Start with 'Lorem ipsum odor amet...' to first sentence of first paragraph                |
+| Name                     | Type   | Default | Description                                                                                                                                                                                                                                       |
+| ------------------------ | ------ | ------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| pCount                   | number | 1       | Number of paragraphs created                                                                                                                                                                                                                      |
+| type                     | string | 'html'  | Type of the output. Available values are **'html'** and **'plain'**. If you give 'plain' as type, paragraphs will be seperated with "\n" if pCount is greater than 1. You have to replace it with <br /> to turn into HTML or process it somehow. |
+| avgWordsPerSentence      | number | 8       | Avarage number of words created for each sentence (standard deviation is fixed ±25%)                                                                                                                                                              |
+| avgSentencesPerParagraph | number | 8       | Avarage number of sentences created for each paragraph (standard deviation is fixed ±25%)                                                                                                                                                         |
+| startWithLoremIpsum      | bool   | true    | Start with 'Lorem ipsum odor amet...' to first sentence of first paragraph                                                                                                                                                                        |
 
 #### Name, FullName
 
@@ -68,7 +69,7 @@ import LoremIpsum, { Name, Surname, FullName, Username } from 'react-lorem-ipsum
 
 ### LoremIpsum
 
-**Code**
+**Code 1**
 
 ```js
 import React from 'react';
@@ -83,7 +84,7 @@ render(
 );
 ```
 
-**HTML Output**
+**HTML Output 1**
 
 ```html
 <div class="wrapper">
@@ -101,6 +102,33 @@ render(
     Interdum praesent ut penatibus fames eros ad consectetur sed. Posuere vehicula id integer fusce
     cursus nulla ipsum.
   </p>
+</div>
+```
+
+**Code 2**
+
+```js
+import React from 'react';
+import { render } from 'react-dom';
+import LoremIpsum from 'react-lorem-ipsum';
+
+render(
+  <div className="wrapper">
+    <LoremIpsum type="plain" />
+  </div>,
+  document.getElementById('root'),
+);
+```
+
+**HTML Output 2**
+
+```html
+<div class="wrapper">
+  Lorem ipsum odor amet, consectetuer adipiscing elit. Ac purus in massa egestas mollis varius;
+  dignissim elementum. Mollis tincidunt mattis hendrerit dolor eros enim, nisi ligula ornare.
+  Hendrerit parturient habitant pharetra rutrum gravida porttitor eros feugiat. Mollis elit sodales
+  taciti duis praesent id. Consequat urna vitae morbi nunc congue. Justo molestie tellus adipiscing
+  sed himenaeos primis amet quam. Rutrum magna luctus urna suspendisse bibendum elit.
 </div>
 ```
 

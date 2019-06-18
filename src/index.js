@@ -15,6 +15,7 @@ import words from './data/words.json';
 // Default Props of the Component
 const defaultProps = {
   pCount: 1,
+  type: 'html',
   avgWordsPerSentence: 8,
   avgSentencesPerParagraph: 8,
   startWithLoremIpsum: true,
@@ -25,6 +26,7 @@ const stDevPercentage = 0.25;
 
 const LoremIpsum = ({
   pCount,
+  type,
   avgWordsPerSentence,
   avgSentencesPerParagraph,
   startWithLoremIpsum,
@@ -96,14 +98,22 @@ const LoremIpsum = ({
       const withLoremIpsum = !!(i === 0 && firstParagraph && swli);
       paragraph += `${createSentence({ withLoremIpsum })} `;
     }
+    if (type === 'plain') return paragraph.trim();
     return <p key={paragraph}>{paragraph.trim()}</p>;
   };
 
   // Create a Lorem Ipsum block with desired paragraph count
   const createLoremIpsum = () => {
-    const paragraphs = [];
     let p = parseInt(pCount, 10);
     if (Number.isNaN(p)) p = defaultProps.pCount;
+    if (type === 'plain') {
+      let paragraphs = '';
+      for (let i = 0; i < p; i += 1) {
+        paragraphs += `${createParagraph({ firstParagraph: i === 0 })}\n`;
+      }
+      return paragraphs.trim();
+    }
+    const paragraphs = [];
     for (let i = 0; i < p; i += 1) {
       paragraphs.push(createParagraph({ firstParagraph: i === 0 }));
     }
@@ -115,6 +125,7 @@ const LoremIpsum = ({
 
 LoremIpsum.propTypes = {
   pCount: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  type: PropTypes.string,
   avgWordsPerSentence: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   avgSentencesPerParagraph: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   startWithLoremIpsum: PropTypes.bool,
@@ -122,6 +133,7 @@ LoremIpsum.propTypes = {
 
 LoremIpsum.defaultProps = {
   pCount: defaultProps.pCount,
+  type: defaultProps.type,
   avgWordsPerSentence: defaultProps.avgWordsPerSentence,
   avgSentencesPerParagraph: defaultProps.avgSentencesPerParagraph,
   startWithLoremIpsum: defaultProps.startWithLoremIpsum,
