@@ -66,7 +66,7 @@ import LoremIpsum, { Name, Surname, FullName, Username } from 'react-lorem-ipsum
 
 ## Example
 
-#### LoremIpsum
+### LoremIpsum
 
 **Code**
 
@@ -104,7 +104,7 @@ render(
 </div>
 ```
 
-#### Name, Surname, FullName, Username
+### Name, Surname, FullName, Username
 
 **Code**
 
