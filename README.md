@@ -20,12 +20,13 @@ In addition to Lorem Ipsum text, you can generate **random names, surnames, full
 [size-url]: https://npmjs.org/package/react-lorem-ipsum
 
 **Table of Contents**
-1- [Install](#install)
-2- [Demo](#demo)
-3- [How to Import](#how-to-import)
-4- [Props](#props)
-5- [Examples](#examples)
-6- [License](#license)
+
+1. [Install](#install)
+2. [Demo](#demo)
+3. [How to Import](#how-to-import)
+4. [Props](#props)
+5. [Examples](#examples)
+6. [License](#license)
 
 ## Install
 
