@@ -5,6 +5,7 @@ const htmlWebpackPlugin = new HtmlWebpackPlugin({
   template: path.join(__dirname, 'examples/src/index.html'),
   filename: './index.html',
 });
+
 module.exports = {
   entry: path.join(__dirname, 'examples/src/index.js'),
   output: {
