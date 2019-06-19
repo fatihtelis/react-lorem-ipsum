@@ -49,6 +49,12 @@ yarn add react-lorem-ipsum
 #### Component
 
 ```js
+import LoremIpsum from 'react-lorem-ipsum';
+```
+
+or
+
+```js
 import { LoremIpsum } from 'react-lorem-ipsum';
 ```
 
@@ -97,33 +103,13 @@ import { loremIpsum } from 'react-lorem-ipsum';
 </div>,
 ```
 
-_Note:_ If you use loremIpsum function to generate plain text, paragraphs will be seperated with "\n" if paragraph count is greater than 1. You have to process it somehow by replacing new lines or splitting from new lines before using as HTML. There is an example about how to split plain text in the "Examples" section.
-
-Example:
-
-```js
-// Convert lorem ipsum text string to an array by splitting from new lines.
-const textArr = loremIpsum({ p: 5 }).split(/\n/);
-
-...
-
-<div className="text-wrapper">
-  {textArr.map(text => (
-    <>
-      {text}
-      <br /><br />
-    </>
-  ))}
-</div>
-```
+_Note:_ If you use loremIpsum function to generate plain text, paragraphs will be seperated with "\n" if paragraph count is greater than 1. You have to process this plain text somehow by replacing new lines or splitting from new lines before using as HTML. There is an example about how to split plain text in the [Examples](#examples) section.
 
 #### name, fullname
 
 | Name   | Type   | Default | Description                                                                                             |
 | ------ | ------ | ------- | ------------------------------------------------------------------------------------------------------- |
 | gender | string | 'all'   | Gender for the generated name or full name. Possible values are **'all'**, **'male'** and **'female'**. |
-
-Use "gender" props like name('male'), fullname('female') etc.
 
 #### surname, username
 
@@ -260,7 +246,7 @@ render(
 ```html
 <div class="user">
   <div class="full-name">Jennifer S. Rose</div>
-  <div class="username">smart.panda.19</div>
+  <div class="username">smart.fox.19</div>
 </div>
 ```
 
