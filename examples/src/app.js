@@ -1,38 +1,51 @@
 import React, { useState } from 'react';
-import LoremIpsum from '../../src';
+import {
+  LoremIpsum, loremIpsum, name, username,
+} from '../../src';
 import './style.scss';
 
 const App = () => {
   const initialProps = {
-    pCount: 1,
+    p: 1,
     avgWordsPerSentence: 8,
     avgSentencesPerParagraph: 8,
     startWithLoremIpsum: true,
-    type: 'html',
   };
-  const [pCount, setPCount] = useState(initialProps.pCount);
+  const [p, setP] = useState(initialProps.p);
   const [avgWordsPerSentence, setAvgWordsPerSentence] = useState(initialProps.avgWordsPerSentence);
   const [avgSentencesPerParagraph, setAvgSentencesPerParagraph] = useState(
     initialProps.avgSentencesPerParagraph,
   );
   const [startWithLoremIpsum, setStartWithLoremIpsum] = useState(initialProps.startWithLoremIpsum);
+
   const handlePChange = (e) => {
-    setPCount(e.target.value);
+    setP(parseInt(e.target.value, 10));
   };
+
   const handleAvgWordInSentenceChange = (e) => {
-    setAvgWordsPerSentence(e.target.value);
+    setAvgWordsPerSentence(parseInt(e.target.value, 10));
   };
+
   const handleAvgSentenceInParagraphChange = (e) => {
-    setAvgSentencesPerParagraph(e.target.value);
+    setAvgSentencesPerParagraph(parseInt(e.target.value, 10));
   };
+
   const handleStartWithLoremIpsumChange = (e) => {
     setStartWithLoremIpsum(e.target.checked);
   };
+
   const resetProps = () => {
-    setPCount(initialProps.pCount);
+    setP(initialProps.p);
     setAvgWordsPerSentence(initialProps.avgWordsPerSentence);
     setAvgSentencesPerParagraph(initialProps.avgSentencesPerParagraph);
+    setStartWithLoremIpsum(initialProps.startWithLoremIpsum);
   };
+
+  const allDefault = initialProps.p === p
+    && initialProps.avgWordsPerSentence === avgWordsPerSentence
+    && initialProps.avgSentencesPerParagraph === avgSentencesPerParagraph
+    && initialProps.startWithLoremIpsum === startWithLoremIpsum;
+
   return (
     <>
       <header>
@@ -65,13 +78,13 @@ const App = () => {
             <h2>Props</h2>
             <div className="prop">
               <label>
-                {`Paragraph Count (${pCount})`}
+                {`Paragraph Count (${p})`}
                 <input
                   className="slider"
                   type="range"
                   min="1"
                   max="50"
-                  value={pCount}
+                  value={p}
                   onChange={handlePChange}
                 />
               </label>
@@ -114,27 +127,33 @@ const App = () => {
               </label>
             </div>
             <button className="reset" type="button" onClick={resetProps}>
-              Reset to Defaults
+              Reset to Default Props
             </button>
           </section>
           <section className="component">
             <h2>Component</h2>
             <div className="code">
-              <div className="line">{'<LoremIpsum'}</div>
-              <div className="line">{`pCount={${pCount}}`}</div>
-              <div className="line">{`avgWordsPerSentence={${avgWordsPerSentence}}`}</div>
-              <div className="line">{`avgSentencesPerParagraph={${avgSentencesPerParagraph}}`}</div>
-              <div className="line">
-                {`startWithLoremIpsum={${startWithLoremIpsum ? 'true' : 'false'}}`}
-              </div>
-              <div className="line">{'/>'}</div>
+              <div className="line">{`<LoremIpsum${allDefault ? ' />' : ''}`}</div>
+              {p !== initialProps.p && <div className="line">{`p={${p}}`}</div>}
+              {avgWordsPerSentence !== initialProps.avgWordsPerSentence && (
+                <div className="line">{`avgWordsPerSentence={${avgWordsPerSentence}}`}</div>
+              )}
+              {avgSentencesPerParagraph !== initialProps.avgSentencesPerParagraph && (
+                <div className="line">{`avgSentencesPerParagraph={${avgSentencesPerParagraph}}`}</div>
+              )}
+              {startWithLoremIpsum !== initialProps.startWithLoremIpsum && (
+                <div className="line">
+                  {`startWithLoremIpsum${!startWithLoremIpsum && '="false"'}`}
+                </div>
+              )}
+              {!allDefault && <div className="line">{'/>'}</div>}
             </div>
           </section>
         </div>
         <section className="output">
           <h2>Output</h2>
           <LoremIpsum
-            pCount={pCount}
+            p={p}
             avgWordsPerSentence={avgWordsPerSentence}
             avgSentencesPerParagraph={avgSentencesPerParagraph}
             startWithLoremIpsum={startWithLoremIpsum}
