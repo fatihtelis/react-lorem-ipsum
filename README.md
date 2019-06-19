@@ -64,7 +64,7 @@ import { loremIpsum, name, surname, fullname, username } from 'react-lorem-ipsum
 
 #### LoremIpsum (Component), loremIpsum (function)
 
-**loremIpsum** is function version of the component **LoremIpsum** which generates plain text instead of HTML. They both get the same props/inputs.
+**loremIpsum** is function version of the component **LoremIpsum** which generates plain text instead of HTML. They both get the same props/inputs as a single object.
 
 | Name                     | Type   | Default | Description                                                                               |
 | ------------------------ | ------ | ------- | ----------------------------------------------------------------------------------------- |
