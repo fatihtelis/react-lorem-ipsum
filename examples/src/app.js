@@ -1,113 +1,81 @@
 import React, { useState } from 'react';
+import Header from './header';
+import Footer from './footer';
 import { LoremIpsum } from '../../src';
 import './style.scss';
 
+const defaultComponentProps = {
+  p: 1,
+  avgWordsPerSentence: 8,
+  avgSentencesPerParagraph: 8,
+  startWithLoremIpsum: true,
+};
+
 const App = () => {
-  const initialProps = {
-    p: 1,
-    avgWordsPerSentence: 8,
-    avgSentencesPerParagraph: 8,
-    startWithLoremIpsum: true,
+  const [componentProps, setComponentProps] = useState(defaultComponentProps);
+
+  const handleComponentPropsChange = (e) => {
+    const {
+      type, name, value, checked,
+    } = e.target;
+    const { [name]: v, ...others } = componentProps;
+    setComponentProps({ [name]: type === 'checkbox' ? checked : parseInt(value, 10), ...others });
   };
-  const [p, setP] = useState(initialProps.p);
-  const [avgWordsPerSentence, setAvgWordsPerSentence] = useState(initialProps.avgWordsPerSentence);
-  const [avgSentencesPerParagraph, setAvgSentencesPerParagraph] = useState(
-    initialProps.avgSentencesPerParagraph,
+
+  const resetComponentProps = () => {
+    setComponentProps(defaultComponentProps);
+  };
+
+  const areAllComponentPropsDefault = Object.keys(defaultComponentProps).every(
+    prop => componentProps[prop] === defaultComponentProps[prop],
   );
-  const [startWithLoremIpsum, setStartWithLoremIpsum] = useState(initialProps.startWithLoremIpsum);
 
-  const handlePChange = (e) => {
-    setP(parseInt(e.target.value, 10));
-  };
-
-  const handleAvgWordInSentenceChange = (e) => {
-    setAvgWordsPerSentence(parseInt(e.target.value, 10));
-  };
-
-  const handleAvgSentenceInParagraphChange = (e) => {
-    setAvgSentencesPerParagraph(parseInt(e.target.value, 10));
-  };
-
-  const handleStartWithLoremIpsumChange = (e) => {
-    setStartWithLoremIpsum(e.target.checked);
-  };
-
-  const resetProps = () => {
-    setP(initialProps.p);
-    setAvgWordsPerSentence(initialProps.avgWordsPerSentence);
-    setAvgSentencesPerParagraph(initialProps.avgSentencesPerParagraph);
-    setStartWithLoremIpsum(initialProps.startWithLoremIpsum);
-  };
-
-  const allDefault = Object.keys(initialProps).every(prop => initialProps[prop] === eval(prop));
-
-  const a = ['fdsfds', 'fdskml'];
   return (
     <>
-      <header>
-        <div className="container">
-          <div className="repo">
-            <div className="title">React Lorem Ipsum</div>
-            <div className="name">react-lorem-ipsum</div>
-          </div>
-          <a
-            href="https://github.com/fatihtelis/react-lorem-ipsum"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <svg
-              height="32"
-              viewBox="0 0 16 16"
-              version="1.1"
-              width="32"
-              aria-hidden="true"
-              fill="white"
-            >
-              <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z" />
-            </svg>
-          </a>
-        </div>
-      </header>
+      <Header />
       <main className="container">
         <div className="top">
           <section className="props">
             <h2>Props</h2>
             <div className="prop">
               <label>
-                {`Paragraph Count (${p})`}
+                {`Paragraph Count (${componentProps.p})`}
                 <input
                   className="slider"
                   type="range"
+                  name="p"
                   min="1"
                   max="50"
-                  value={p}
-                  onChange={handlePChange}
+                  value={componentProps.p}
+                  onChange={handleComponentPropsChange}
                 />
               </label>
             </div>
             <div className="prop">
               <label>
-                {`Average Words Per Sentence (${avgWordsPerSentence})`}
+                {`Average Words Per Sentence (${componentProps.avgWordsPerSentence})`}
                 <input
                   className="slider"
                   type="range"
+                  name="avgWordsPerSentence"
                   min="4"
                   max="20"
-                  value={avgWordsPerSentence}
-                  onChange={handleAvgWordInSentenceChange}
+                  value={componentProps.avgWordsPerSentence}
+                  onChange={handleComponentPropsChange}
                 />
               </label>
             </div>
             <div className="prop">
               <label>
-                {`Average Sentences Per Paragraph (${avgSentencesPerParagraph})`}
+                {`Average Sentences Per Paragraph (${componentProps.avgSentencesPerParagraph})`}
                 <input
                   className="slider"
                   type="range"
+                  name="avgSentencesPerParagraph"
                   min="4"
                   max="20"
-                  value={avgSentencesPerParagraph}
-                  onChange={handleAvgSentenceInParagraphChange}
+                  value={componentProps.avgSentencesPerParagraph}
+                  onChange={handleComponentPropsChange}
                 />
               </label>
             </div>
@@ -117,51 +85,55 @@ const App = () => {
                 <input
                   className="checkbox"
                   type="checkbox"
-                  checked={startWithLoremIpsum}
-                  onChange={handleStartWithLoremIpsumChange}
+                  name="startWithLoremIpsum"
+                  checked={componentProps.startWithLoremIpsum}
+                  onChange={handleComponentPropsChange}
                 />
               </label>
             </div>
-            <button className="reset" type="button" onClick={resetProps} disabled={allDefault}>
+            <button
+              className="reset"
+              type="button"
+              onClick={resetComponentProps}
+              disabled={areAllComponentPropsDefault}
+            >
               Reset to Default Props
             </button>
           </section>
           <section className="component">
             <h2>Component</h2>
             <div className="code">
-              <div className="line">{`<LoremIpsum${allDefault ? ' />' : ''}`}</div>
-              {p !== initialProps.p && <div className="line">{`p={${p}}`}</div>}
-              {avgWordsPerSentence !== initialProps.avgWordsPerSentence && (
-                <div className="line">{`avgWordsPerSentence={${avgWordsPerSentence}}`}</div>
+              <div className="line">{`<LoremIpsum${areAllComponentPropsDefault ? ' />' : ''}`}</div>
+              {componentProps.p !== defaultComponentProps.p && (
+                <div className="line">{`p={${componentProps.p}}`}</div>
               )}
-              {avgSentencesPerParagraph !== initialProps.avgSentencesPerParagraph && (
-                <div className="line">{`avgSentencesPerParagraph={${avgSentencesPerParagraph}}`}</div>
+              {componentProps.avgWordsPerSentence !== defaultComponentProps.avgWordsPerSentence && (
+                <div className="line">{`avgWordsPerSentence={${componentProps.avgWordsPerSentence}}`}</div>
               )}
-              {startWithLoremIpsum !== initialProps.startWithLoremIpsum && (
+              {componentProps.avgSentencesPerParagraph
+                !== defaultComponentProps.avgSentencesPerParagraph && (
+                <div className="line">{`avgSentencesPerParagraph={${componentProps.avgSentencesPerParagraph}}`}</div>
+              )}
+              {componentProps.startWithLoremIpsum !== defaultComponentProps.startWithLoremIpsum && (
                 <div className="line">
-                  {`startWithLoremIpsum${!startWithLoremIpsum && '="false"'}`}
+                  {`startWithLoremIpsum${!componentProps.startWithLoremIpsum && '="false"'}`}
                 </div>
               )}
-              {!allDefault && <div className="line">{'/>'}</div>}
+              {!areAllComponentPropsDefault && <div className="line">{'/>'}</div>}
             </div>
           </section>
         </div>
         <section className="output">
           <h2>Output</h2>
           <LoremIpsum
-            p={p}
-            avgWordsPerSentence={avgWordsPerSentence}
-            avgSentencesPerParagraph={avgSentencesPerParagraph}
-            startWithLoremIpsum={startWithLoremIpsum}
+            p={componentProps.p}
+            avgWordsPerSentence={componentProps.avgWordsPerSentence}
+            avgSentencesPerParagraph={componentProps.avgSentencesPerParagraph}
+            startWithLoremIpsum={componentProps.startWithLoremIpsum}
           />
         </section>
       </main>
-      <footer>
-        <span>Developed by</span>
-        <a href="https://fatihtelis.com" target="_blank" rel="noopener noreferrer">
-          Fatih Telis
-        </a>
-      </footer>
+      <Footer />
     </>
   );
 };

@@ -30,6 +30,8 @@ In addition to Lorem Ipsum text, you can generate **random names, surnames, full
 
 ## Install
 
+[![react-lorem-ipsum](https://nodei.co/npm/react-lorem-ipsum.png)](https://npmjs.org/package/react-lorem-ipsum)
+
 ```bash
 npm install react-lorem-ipsum
 ```
@@ -39,8 +41,6 @@ or
 ```bash
 yarn add react-lorem-ipsum
 ```
-
-[![react-lorem-ipsum](https://nodei.co/npm/react-lorem-ipsum.png)](https://npmjs.org/package/react-lorem-ipsum)
 
 ## Demo
 
@@ -73,7 +73,7 @@ import { loremIpsum, name, surname, fullname, username } from 'react-lorem-ipsum
 | avgSentencesPerParagraph | number | 8       | Avarage number of sentences created for each paragraph (standard deviation is fixed ±25%) |
 | startWithLoremIpsum      | bool   | true    | Start with 'Lorem ipsum odor amet...' to first sentence of first paragraph                |
 
-_Note:_ If you use loremIpsum function to generate plain text, it returns a "String" if paragraph count is 1. If you give paragraph count greater than 1, it will return an "Array" with length of the desired count. You can use "Array.map" or similar methods to process the data. See [Examples](#examples) for details.
+_Note:_ If you use loremIpsum function to generate plain text, it will return an "Array" with length of the desired count. You can use "Array.map" or similar methods to process the data. See [Examples](#examples) for details.
 
 #### name, fullname
 
@@ -158,7 +158,9 @@ import { loremIpsum } from 'react-lorem-ipsum';
 render(
   <div className="text-wrapper">
     {loremIpsum({ p: 3 }).map(text => (
-      <div className="text">{text}</div>
+      <div className="text" key={text}>
+        {text}
+      </div>
     ))}
   </div>,
   document.getElementById('root'),

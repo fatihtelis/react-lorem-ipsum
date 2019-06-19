@@ -32,7 +32,7 @@ const midPunctuation = (sentenceLength) => {
   let position;
   if (sentenceLength > 6) {
     // 25% probability for punctuation
-    const hasPunctuation = Math.random() <= 0.25;
+    const hasPunctuation = !!(Math.random() <= 0.25);
     if (hasPunctuation) {
       position = randomFromRange(2, sentenceLength - 3);
       punctuation = punctuations[randomFromRange(0, punctuations.length - 1)];
@@ -44,11 +44,9 @@ const midPunctuation = (sentenceLength) => {
 // Get a punctuation for end of the sentence randomly
 const endPunctuation = () => {
   const random = Math.random();
-  // 2.5% probability exclamation mark
-  if (random > 0.975) return '!';
-  // 7.5% probability question mark
-  if (random > 0.9) return '?';
-  // 90% probability dot
+  // 1% probability exclamation mark, 4% probability question mark, 95% probability dot
+  if (random > 0.99) return '!';
+  if (random > 0.95) return '?';
   return '.';
 };
 
@@ -56,60 +54,38 @@ const endPunctuation = () => {
 const createSentence = ({ withLoremIpsum, avgWordsPerSentence }) => {
   if (withLoremIpsum) return 'Lorem ipsum odor amet, consectetuer adipiscing elit.';
   const awps = parseIntWithDefault(avgWordsPerSentence, defaultProps.avgWordsPerSentence);
-
   const stDev = getStandardDeviation(awps, stDevPercentage);
   const sentenceLength = randomPositiveFromRange(awps - stDev, awps + stDev);
   const midPunc = midPunctuation(sentenceLength);
+
   let sentence = '';
   for (let i = 0; i < sentenceLength; i += 1) {
-    const word = createWord();
-    sentence += `${word}${midPunc.position === i ? midPunc.punctuation : ''} `;
+    sentence += `${createWord()}${midPunc.position === i ? midPunc.punctuation : ''} `;
   }
-  sentence = `${sentence.charAt(0).toUpperCase()
-    + sentence
-      .slice(1)
-      .toLowerCase()
-      .trim()}${endPunctuation()}`;
+  sentence = `${sentence.charAt(0).toUpperCase() + sentence.substr(1).trim()}${endPunctuation()}`;
   return sentence;
 };
 
 // Create a paragraph by joining sentences
 const createParagraph = ({
   firstParagraph,
-  type,
   avgWordsPerSentence,
   avgSentencesPerParagraph,
   startWithLoremIpsum,
 }) => {
   const aspp = parseIntWithDefault(avgSentencesPerParagraph, defaultProps.avgSentencesPerParagraph);
-  let paragraph = '';
+  const swli = typeof startWithLoremIpsum === 'boolean'
+    ? startWithLoremIpsum
+    : defaultProps.startWithLoremIpsum;
   const stDev = getStandardDeviation(aspp, stDevPercentage);
   const paragraphLength = randomPositiveFromRange(aspp - stDev, aspp + stDev);
+
+  let paragraph = '';
   for (let i = 0; i < paragraphLength; i += 1) {
-    const swli = typeof startWithLoremIpsum === 'boolean'
-      ? startWithLoremIpsum
-      : defaultProps.startWithLoremIpsum;
     const withLoremIpsum = !!(i === 0 && firstParagraph && swli);
     paragraph += `${createSentence({ withLoremIpsum, avgWordsPerSentence })} `;
   }
-  if (type === 'plain') return paragraph.trim();
-  return <p key={paragraph}>{paragraph.trim()}</p>;
-};
-
-// Component create Lorem Ipsum as HTML
-const LoremIpsum = ({ p, ...otherProps }) => {
-  const pCount = parseIntWithDefault(p, defaultProps.p);
-  const paragraphs = [];
-  for (let i = 0; i < pCount; i += 1) {
-    paragraphs.push(
-      createParagraph({
-        firstParagraph: i === 0,
-        type: 'html',
-        ...otherProps,
-      }),
-    );
-  }
-  return paragraphs;
+  return paragraph.trim();
 };
 
 // Function create plain Lorem Ipsum
@@ -121,15 +97,18 @@ const loremIpsum = (props = {}) => {
     paragraphs.push(
       createParagraph({
         firstParagraph: i === 0,
-        type: 'plain',
         ...otherProps,
       }),
     );
   }
-  // Return a string if there is only one paragraph
-  if (pCount === 1) return paragraphs[0];
-  // Else return an array for pCount > 1
   return paragraphs;
+};
+
+// Component create Lorem Ipsum as HTML
+const LoremIpsum = (props) => {
+  const paragraphs = loremIpsum(props);
+  const html = paragraphs.map(paragraph => <p key={paragraph}>{paragraph}</p>);
+  return html;
 };
 
 LoremIpsum.propTypes = {
