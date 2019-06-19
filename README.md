@@ -225,28 +225,55 @@ render(
 
 ### name, surname, fullname, username
 
-**Code**
+**Code 1**
 
 ```js
 import React from 'react';
 import { render } from 'react-dom';
-import { fullName, username } from 'react-lorem-ipsum';
+import { name, surname, username } from 'react-lorem-ipsum';
 
 render(
   <div className="user">
-    <div className="full-name">{fullname('female')}</div>
+    <div className="name">{name('male')}</div>
+    <div className="surname">{surname()}</div>
     <div className="username">{username()}</div>
   </div>,
   document.getElementById('root'),
 );
 ```
 
-**HTML Output**
+**HTML Output 1**
+
+```html
+<div class="user">
+  <div class="name">John</div>
+  <div class="surname">Smith</div>
+  <div class="username">smart_guru</div>
+</div>
+```
+
+**Code 2**
+
+```js
+import React from 'react';
+import { render } from 'react-dom';
+import { fullname, username } from 'react-lorem-ipsum';
+
+render(
+  <div className="user">
+    <div className="full-name">{fullname('female')}</div>
+    <div className="username">{`@${username()}`}</div>
+  </div>,
+  document.getElementById('root'),
+);
+```
+
+**HTML Output 2**
 
 ```html
 <div class="user">
   <div class="full-name">Jennifer S. Rose</div>
-  <div class="username">smart.fox.19</div>
+  <div class="username">@smart.fox.19</div>
 </div>
 ```
 
