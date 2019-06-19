@@ -40,6 +40,8 @@ or
 yarn add react-lorem-ipsum
 ```
 
+[![react-lorem-ipsum](https://nodei.co/npm/react-lorem-ipsum.png)](https://npmjs.org/package/react-lorem-ipsum)
+
 ## Demo
 
 [https://fatihtelis.github.io/react-lorem-ipsum](https://fatihtelis.github.io/react-lorem-ipsum)
@@ -47,12 +49,6 @@ yarn add react-lorem-ipsum
 ## How to Import
 
 #### Component
-
-```js
-import LoremIpsum from 'react-lorem-ipsum';
-```
-
-or
 
 ```js
 import { LoremIpsum } from 'react-lorem-ipsum';
@@ -77,33 +73,7 @@ import { loremIpsum, name, surname, fullname, username } from 'react-lorem-ipsum
 | avgSentencesPerParagraph | number | 8       | Avarage number of sentences created for each paragraph (standard deviation is fixed ±25%) |
 | startWithLoremIpsum      | bool   | true    | Start with 'Lorem ipsum odor amet...' to first sentence of first paragraph                |
 
-Usage of _LoremIpsum vs. loremIpsum_ is as follows;
-
-**LoremIpsum**
-
-```js
-// Component that generates HTML
-import { LoremIpsum } from 'react-lorem-ipsum';
-
-...
-<div className="wrapper">
-  <LoremIpsum p={2} />
-</div>,
-```
-
-**loremIpsum**
-
-```js
-// Function that generates plain text (string)
-import { loremIpsum } from 'react-lorem-ipsum';
-
-...
-<div className="wrapper">
-  {loremIpsum({p: 2})}
-</div>,
-```
-
-_Note:_ If you use loremIpsum function to generate plain text, paragraphs will be seperated with "\n" if paragraph count is greater than 1. You have to process this plain text somehow by replacing new lines or splitting from new lines before using as HTML. There is an example about how to split plain text in the [Examples](#examples) section.
+_Note:_ If you use loremIpsum function to generate plain text, it returns a "String" if paragraph count is 1. If you give paragraph count greater than 1, it will return an "Array" with length of the desired count. You can use "Array.map" or similar methods to process the data. See [Examples](#examples) for details.
 
 #### name, fullname
 
@@ -185,12 +155,9 @@ import React from 'react';
 import { render } from 'react-dom';
 import { loremIpsum } from 'react-lorem-ipsum';
 
-// Convert lorem ipsum text string to an array by splitting from new lines.
-const textArr = loremIpsum({ p: 3 }).split(/\n/);
-
 render(
   <div className="text-wrapper">
-    {textArr.map(text => (
+    {loremIpsum({ p: 3 }).map(text => (
       <div className="text">{text}</div>
     ))}
   </div>,

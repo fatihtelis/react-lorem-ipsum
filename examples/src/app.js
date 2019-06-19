@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
-import {
-  LoremIpsum, loremIpsum, name, username,
-} from '../../src';
+import { LoremIpsum } from '../../src';
 import './style.scss';
 
 const App = () => {
@@ -41,11 +39,9 @@ const App = () => {
     setStartWithLoremIpsum(initialProps.startWithLoremIpsum);
   };
 
-  const allDefault = initialProps.p === p
-    && initialProps.avgWordsPerSentence === avgWordsPerSentence
-    && initialProps.avgSentencesPerParagraph === avgSentencesPerParagraph
-    && initialProps.startWithLoremIpsum === startWithLoremIpsum;
+  const allDefault = Object.keys(initialProps).every(prop => initialProps[prop] === eval(prop));
 
+  const a = ['fdsfds', 'fdskml'];
   return (
     <>
       <header>
@@ -126,7 +122,7 @@ const App = () => {
                 />
               </label>
             </div>
-            <button className="reset" type="button" onClick={resetProps}>
+            <button className="reset" type="button" onClick={resetProps} disabled={allDefault}>
               Reset to Default Props
             </button>
           </section>

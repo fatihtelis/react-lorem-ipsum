@@ -23,7 +23,7 @@ const defaultProps = {
 const stDevPercentage = 0.25;
 
 // Get a random word from Latin word list
-const randomWord = () => words[randomFromRange(0, words.length - 1)];
+const createWord = () => words[randomFromRange(0, words.length - 1)];
 
 // Get a punctuation for middle of the sentence randomly
 const midPunctuation = (sentenceLength) => {
@@ -53,7 +53,7 @@ const endPunctuation = () => {
 };
 
 // Create a Sentence by using random words
-const randomSentence = ({ withLoremIpsum, avgWordsPerSentence }) => {
+const createSentence = ({ withLoremIpsum, avgWordsPerSentence }) => {
   if (withLoremIpsum) return 'Lorem ipsum odor amet, consectetuer adipiscing elit.';
   const awps = parseIntWithDefault(avgWordsPerSentence, defaultProps.avgWordsPerSentence);
 
@@ -62,7 +62,7 @@ const randomSentence = ({ withLoremIpsum, avgWordsPerSentence }) => {
   const midPunc = midPunctuation(sentenceLength);
   let sentence = '';
   for (let i = 0; i < sentenceLength; i += 1) {
-    const word = randomWord();
+    const word = createWord();
     sentence += `${word}${midPunc.position === i ? midPunc.punctuation : ''} `;
   }
   sentence = `${sentence.charAt(0).toUpperCase()
@@ -90,16 +90,14 @@ const createParagraph = ({
       ? startWithLoremIpsum
       : defaultProps.startWithLoremIpsum;
     const withLoremIpsum = !!(i === 0 && firstParagraph && swli);
-    paragraph += `${randomSentence({ withLoremIpsum, avgWordsPerSentence })} `;
+    paragraph += `${createSentence({ withLoremIpsum, avgWordsPerSentence })} `;
   }
   if (type === 'plain') return paragraph.trim();
   return <p key={paragraph}>{paragraph.trim()}</p>;
 };
 
 // Component create Lorem Ipsum as HTML
-const LoremIpsum = ({
-  p, avgWordsPerSentence, avgSentencesPerParagraph, startWithLoremIpsum,
-}) => {
+const LoremIpsum = ({ p, ...otherProps }) => {
   const pCount = parseIntWithDefault(p, defaultProps.p);
   const paragraphs = [];
   for (let i = 0; i < pCount; i += 1) {
@@ -107,9 +105,7 @@ const LoremIpsum = ({
       createParagraph({
         firstParagraph: i === 0,
         type: 'html',
-        avgWordsPerSentence,
-        avgSentencesPerParagraph,
-        startWithLoremIpsum,
+        ...otherProps,
       }),
     );
   }
@@ -118,21 +114,22 @@ const LoremIpsum = ({
 
 // Function create plain Lorem Ipsum
 const loremIpsum = (props = {}) => {
-  const {
-    p, avgWordsPerSentence, avgSentencesPerParagraph, startWithLoremIpsum,
-  } = props;
+  const { p, ...otherProps } = props;
   const pCount = parseIntWithDefault(p, defaultProps.p);
-  let paragraphs = '';
+  const paragraphs = [];
   for (let i = 0; i < pCount; i += 1) {
-    paragraphs += `${createParagraph({
-      firstParagraph: i === 0,
-      type: 'plain',
-      avgWordsPerSentence,
-      avgSentencesPerParagraph,
-      startWithLoremIpsum,
-    })}\n`;
+    paragraphs.push(
+      createParagraph({
+        firstParagraph: i === 0,
+        type: 'plain',
+        ...otherProps,
+      }),
+    );
   }
-  return paragraphs.trim();
+  // Return a string if there is only one paragraph
+  if (pCount === 1) return paragraphs[0];
+  // Else return an array for pCount > 1
+  return paragraphs;
 };
 
 LoremIpsum.propTypes = {

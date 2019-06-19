@@ -133,6 +133,11 @@ body {
           &:hover {
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
           }
+          &:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            box-shadow: none;
+          }
         }
       }
       .component {
