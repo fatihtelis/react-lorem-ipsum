@@ -228,7 +228,7 @@ render(
 
 ```html
 <div class="user">
-  <img class="avatar" src="data:image/jpeg;base64,......" alt="Avatar" width="200" height="200" />
+  <img class="avatar" src="data:image/jpeg;base64,......" width="200" height="200" alt="Avatar" />
   <div class="name">John</div>
   <div class="surname">Smith</div>
   <div class="username">smart_guru</div>
