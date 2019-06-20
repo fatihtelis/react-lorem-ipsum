@@ -10,6 +10,9 @@ body {
   @media (max-width: 768px) {
     font-size: 15px;
   }
+  h2 {
+    margin-top: 0;
+  }
   .container {
     max-width: 1200px;
     margin: 0 auto;
@@ -52,49 +55,58 @@ body {
   main {
     min-height: calc(100vh - 160px);
     .tab-header {
-      margin-top: 50px;
-      border-bottom: 1px solid $primary;
-      margin-bottom: 20px;
+      margin-top: 30px;
+      border-bottom: 2px solid $border;
       button {
-        background-color: transparent;
+        background-color: #e8f0f2;
         border: none;
-        padding: 20px 30px;
+        padding: 15px 30px;
         outline: none;
         cursor: pointer;
         font-size: 18px;
         font-weight: 700;
         border: none;
+        @media (max-width: 768px) {
+          padding: 15px 20px;
+          font-size: 16px;
+        }
+        @media (max-width: 414px) {
+          width: 50%;
+        }
         &.active {
           background-color: $primary;
           color: white;
           cursor: default;
+          position: relative;
+          &::before {
+            content: '';
+            width: 100%;
+            height: 2px;
+            background-color: $primary;
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+          }
         }
       }
     }
     .content {
       display: none;
+      padding: 30px 0;
       &.active {
         display: block;
       }
     }
-    .lipsum-wrapper {
+    .lorem-ipsum-wrapper {
       .top {
         display: flex;
-        margin: 0 -20px 40px;
+        margin: 0 -20px 30px;
         @media (max-width: 1024px) {
-          margin: 0 0 40px;
+          margin: 0 0 20px;
           flex-direction: column;
         }
-        .props,
-        .component {
-          width: 50%;
-          padding: 0 20px;
-          @media (max-width: 1024px) {
-            width: 100%;
-            padding: 10px 0;
-          }
-        }
         .props {
+          width: 40%;
           .prop {
             label {
               display: block;
@@ -160,6 +172,10 @@ body {
             outline: none;
             cursor: pointer;
             transition: 0.2s;
+            @media (max-width: 414px) {
+              width: 100%;
+              margin: 30px 0;
+            }
             &:hover {
               box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
             }
@@ -170,53 +186,83 @@ body {
             }
           }
         }
+        .component {
+          width: 60%;
+        }
+        .props,
+        .component {
+          padding: 0 20px;
+          @media (max-width: 1024px) {
+            width: 100%;
+            padding: 0;
+          }
+        }
       }
       .output {
         background-color: white;
         padding: 30px;
         border: 2px solid $border;
-        margin-bottom: 40px;
       }
     }
-    .user-wrapper {
+    .random-user-wrapper {
       display: flex;
-      .user {
-        background-color: white;
-        border: 2px solid $border;
-        border-radius: 3px;
-        padding: 20px;
-        display: block;
-        width: 300px;
-        text-align: center;
-        img {
-          border-radius: 50%;
+      @media (max-width: 768px) {
+        flex-direction: column;
+      }
+      .random-user {
+        width: 360px;
+        @media (max-width: 768px) {
+          width: 100%;
+        }
+        .user {
+          background-color: white;
+          border: 2px solid $border;
+          border-radius: 3px;
+          padding: 30px;
           display: block;
-          margin: 0 auto 30px;
-        }
-        .fullname {
-          font-size: 24px;
-          font-weight: 700;
-        }
-        .username {
-          font-size: 18px;
-          opacity: 0.5;
-          margin-top: 5px;
+          text-align: center;
+          img {
+            border-radius: 50%;
+            display: block;
+            margin: 0 auto 30px;
+          }
+          .fullname {
+            font-size: 24px;
+            font-weight: 700;
+          }
+          .username {
+            font-size: 18px;
+            opacity: 0.5;
+            margin-top: 5px;
+          }
         }
         .shuffle-user {
           display: block;
           background-color: $primary;
           color: white;
           padding: 15px 30px;
-          margin: 30px auto 0;
+          margin: 30px auto;
           cursor: pointer;
           outline: none;
           border-radius: 3px;
           border: none;
+          transition: 0.2s;
+          @media (max-width: 414px) {
+            width: 100%;
+            margin: 20px 0;
+          }
+          &:hover {
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+          }
         }
       }
       .user-code {
-        width: calc(100% - 300px);
+        width: calc(100% - 360px);
         padding-left: 30px;
+        @media (max-width: 768px) {
+          width: 100%;
+          padding-left: 0;
+        }
       }
     }
   }
@@ -227,7 +273,6 @@ body {
     border-radius: 3px;
     background-color: white;
     font-size: 18px;
-    min-height: 200px;
     @media (max-width: 1024px) {
       font-size: 16px;
     }
@@ -240,6 +285,9 @@ body {
       &:last-child {
         padding-left: 0;
       }
+    }
+    & + .code {
+      margin-top: 20px;
     }
   }
   footer {

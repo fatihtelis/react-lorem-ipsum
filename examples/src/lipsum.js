@@ -28,7 +28,7 @@ const Lipsum = () => {
   );
 
   return (
-    <div className="lipsum-wrapper">
+    <div className="lorem-ipsum-wrapper">
       <div className="top">
         <section className="props">
           <h2>Props</h2>
@@ -97,6 +97,9 @@ const Lipsum = () => {
         </section>
         <section className="component">
           <h2>Component</h2>
+          <div className="code">
+            <div className="line">{'import { LoremIpsum } from "react-lorem-ipsum";'}</div>
+          </div>
           <div className="code">
             <div className="line">{`<LoremIpsum${areAllComponentPropsDefault ? ' />' : ''}`}</div>
             {componentProps.p !== defaultComponentProps.p && (

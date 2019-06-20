@@ -10,17 +10,24 @@ const User = () => {
     setActiveGender(getRandomGender());
   };
   return (
-    <div className="user-wrapper">
-      <section className="user" key={key}>
-        <Avatar gender={activeGender} />
-        <div className="fullname">{fullname(activeGender)}</div>
-        <div className="username">{`@${username()}`}</div>
+    <div className="random-user-wrapper">
+      <section className="random-user">
+        <div className="user" key={key}>
+          <Avatar gender={activeGender} />
+          <div className="fullname">{fullname(activeGender)}</div>
+          <div className="username">{`@${username()}`}</div>
+        </div>
         <button className="shuffle-user" type="button" onClick={onShuffle}>
           SHUFFLE USER
         </button>
       </section>
       <section className="user-code">
         <h2>Code</h2>
+        <div className="code">
+          <div className="line">
+            {'import { Avatar, fullname, username } from "react-lorem-ipsum";'}
+          </div>
+        </div>
         <div className="code">
           <div className="line">{'<div className="user">'}</div>
           <div className="line">{`<Avatar gender="${activeGender}">`}</div>

@@ -49,10 +49,10 @@ yarn add react-lorem-ipsum
 
 ## How to Import
 
-#### Component
+#### Components
 
 ```js
-import { LoremIpsum } from 'react-lorem-ipsum';
+import { LoremIpsum, Avatar } from 'react-lorem-ipsum';
 ```
 
 #### Functions
@@ -76,13 +76,24 @@ import { loremIpsum, name, surname, fullname, username } from 'react-lorem-ipsum
 
 _Note:_ If you use loremIpsum function to generate plain text, it will return an "Array" with length of the desired count. You can use "Array.map" or similar methods to process the data. See [Examples](#examples) for details.
 
-#### name, fullname
+#### Avatar (Component)
+
+| Name      | Type   | Default | Description                                                                                |
+| --------- | ------ | ------- | ------------------------------------------------------------------------------------------ |
+| gender    | string | 'all'   | Gender for the Avatar picture. Possible values are **'all'**, **'male'** and **'female'**. |
+| width     | number | 200     | Width of the Avatar image in pixels                                                        |
+| height    | number | 200     | Height of the Avatar image in pixels                                                       |
+| className | string | ''      | Avatar image className                                                                     |
+
+_Note:_ Avatar component returns an `<img />` tag with a random image.
+
+#### name, fullname (Functions)
 
 | Name   | Type   | Default | Description                                                                                             |
 | ------ | ------ | ------- | ------------------------------------------------------------------------------------------------------- |
 | gender | string | 'all'   | Gender for the generated name or full name. Possible values are **'all'**, **'male'** and **'female'**. |
 
-#### surname, username
+#### surname, username (Functions)
 
 | Props                                                                                                                         |
 | ----------------------------------------------------------------------------------------------------------------------------- |
@@ -193,7 +204,7 @@ render(
 </div>
 ```
 
-### name, surname, fullname, username
+### Avatar, name, surname, fullname, username
 
 **Code 1**
 
@@ -204,6 +215,7 @@ import { name, surname, username } from 'react-lorem-ipsum';
 
 render(
   <div className="user">
+    <Avatar className="avatar" gender="male" />
     <div className="name">{name('male')}</div>
     <div className="surname">{surname()}</div>
     <div className="username">{username()}</div>
@@ -216,6 +228,7 @@ render(
 
 ```html
 <div class="user">
+  <img class="avatar" src="data:image/jpeg;base64,......" alt="Avatar" width="200" height="200" />
   <div class="name">John</div>
   <div class="surname">Smith</div>
   <div class="username">smart_guru</div>
