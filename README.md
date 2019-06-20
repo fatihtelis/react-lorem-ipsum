@@ -27,6 +27,7 @@ In addition to Lorem Ipsum text, you can generate **random names, surnames, full
 4. [Props](#props)
 5. [Examples](#examples)
 6. [License](#license)
+7. [Author](#author)
 
 ## Install
 
@@ -249,3 +250,17 @@ render(
 ## License
 
 `react-lorem-ipsum` is released under the MIT license.
+
+## Author
+
+<table>
+  <tr>
+    <td>
+      <img src="https://github.com/fatihtelis.png?s=100" width="100">
+    </td>
+    <td>
+      Fatih Telis<br />      
+      <a href="http://fatihtelis.com" title="Fatih Telis">http://fatihtelis.com</a>
+    </td>
+  </tr>
+</table>
