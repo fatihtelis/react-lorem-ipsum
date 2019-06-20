@@ -1,24 +1,18 @@
-import { randomFromRange } from '../utils';
+import { randomFromRange, getRandomGender } from '../utils';
 import names from '../data/names.json';
 import surnames from '../data/surnames.json';
 import usernames from '../data/usernames.json';
 
-const getRandomGender = () => {
-  if (Math.random() >= 0.5) return 'male';
-  return 'female';
-};
-
 const name = (gender = 'all') => {
   const randomGender = getRandomGender();
-  let gn = gender;
-  if (['male', 'female'].includes(gender)) gn = 'all';
-  const finalGender = gn === 'all' ? randomGender : gn;
+  let finalGender = randomGender;
+  if (['male', 'female'].includes(gender)) finalGender = gender;
   return names[finalGender][randomFromRange(0, names[finalGender].length - 1)];
 };
 
 const surname = () => surnames[randomFromRange(0, surnames.length - 1)];
 
-const fullname = ({ gender = 'all' }) => {
+const fullname = (gender = 'all') => {
   const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
   const midName = Math.random() < 0.1 ? `${letters.charAt(randomFromRange(0, letters.length - 1))}.` : '';
   return `${name(gender)} ${midName} ${surname()}`;

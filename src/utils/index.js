@@ -14,6 +14,15 @@ const parseIntWithDefault = (value, defaultValue) => {
   return finalValue;
 };
 
+const getRandomGender = () => {
+  if (Math.random() >= 0.5) return 'male';
+  return 'female';
+};
+
 export {
-  randomFromRange, randomPositiveFromRange, getStandardDeviation, parseIntWithDefault,
+  randomFromRange,
+  randomPositiveFromRange,
+  getStandardDeviation,
+  parseIntWithDefault,
+  getRandomGender,
 };

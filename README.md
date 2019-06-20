@@ -6,7 +6,7 @@ When you develop a mockup page or backend API is not ready for data fetching and
 
 In addition to Lorem Ipsum text, you can generate **random names, surnames, full names** and **usernames** to fill the fields about users randomly.
 
-👍 React Lorem Ipsum is a zero-dependency, lightweight, easy-to-use package.
+👍 React Lorem Ipsum is a zero-dependency, easy-to-use package.
 
 [![NPM version][npm-image]][npm-url]
 [![npm download][download-image]][download-url]

@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Avatar from './avatar';
 import {
   name, surname, fullname, username,
 } from './user';
@@ -126,6 +127,6 @@ LoremIpsum.defaultProps = {
 };
 
 export {
-  LoremIpsum, loremIpsum, name, surname, fullname, username,
+  LoremIpsum, Avatar, loremIpsum, name, surname, fullname, username,
 };
 export default LoremIpsum;

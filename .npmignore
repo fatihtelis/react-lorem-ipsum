@@ -4,7 +4,7 @@ examples
 __mocks__
 
 #Dist
-dist/tests
+dist/__tests__
 
 #Config files
 .babelrc
