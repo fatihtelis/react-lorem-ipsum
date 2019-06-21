@@ -1,7 +1,7 @@
 import React from 'react';
 import Enzyme, { shallow } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
-import Avatar from '../avatar';
+import Avatar from '../user/avatar';
 
 Enzyme.configure({ adapter: new Adapter() });
 
@@ -12,9 +12,7 @@ describe('Avatar', () => {
     expect(wrapper.exists()).toBe(true);
   });
   test('exists with data', () => {
-    const wrapper = shallow(
-      <Avatar avatarClassName="avatar" gender="male" width="100" height="100" />,
-    );
+    const wrapper = shallow(<Avatar gender="male" />);
     expect(wrapper.exists()).toBe(true);
   });
 });

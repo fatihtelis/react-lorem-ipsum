@@ -9,15 +9,13 @@ In addition to Lorem Ipsum text, you can generate **random names, surnames, full
 👍 React Lorem Ipsum is a zero-dependency, easy-to-use package.
 
 [![NPM version][npm-image]][npm-url]
-[![npm download][download-image]][download-url]
-[![npm size][size-image]][size-url]
+[![NPM download][download-image]][npm-url]
+[![Build][build-image]][npm-url]
 
 [npm-image]: https://img.shields.io/npm/v/react-lorem-ipsum.svg?style=flat-square
-[npm-url]: https://npmjs.org/package/react-lorem-ipsum
 [download-image]: https://img.shields.io/npm/dm/react-lorem-ipsum.svg?style=flat-square
-[download-url]: https://npmjs.org/package/react-lorem-ipsum
-[size-image]: https://img.shields.io/bundlephobia/min/react-lorem-ipsum.svg
-[size-url]: https://npmjs.org/package/react-lorem-ipsum
+[build-image]: https://img.shields.io/travis/fatihtelis/react-lorem-ipsum.svg?style=flat-square
+[npm-url]: https://npmjs.org/package/react-lorem-ipsum
 
 **Table of Contents**
 
@@ -78,14 +76,11 @@ _Note:_ If you use loremIpsum function to generate plain text, it will return an
 
 #### Avatar (Component)
 
-| Name      | Type   | Default | Description                                                                                |
-| --------- | ------ | ------- | ------------------------------------------------------------------------------------------ |
-| gender    | string | 'all'   | Gender for the Avatar picture. Possible values are **'all'**, **'male'** and **'female'**. |
-| width     | number | 200     | Width of the Avatar image in pixels                                                        |
-| height    | number | 200     | Height of the Avatar image in pixels                                                       |
-| className | string | ''      | Avatar image className                                                                     |
+| Name   | Type   | Default | Description                                                                                |
+| ------ | ------ | ------- | ------------------------------------------------------------------------------------------ |
+| gender | string | 'all'   | Gender for the Avatar picture. Possible values are **'all'**, **'male'** and **'female'**. |
 
-_Note:_ Avatar component returns an `<img />` tag with a random image.
+_Note:_ Avatar component returns an `<img />` tag with a random image. All other props like "className, width, height, alt" etc. will directly passed to <img /> element.
 
 #### name, fullname (Functions)
 
@@ -215,7 +210,8 @@ import { name, surname, username } from 'react-lorem-ipsum';
 
 render(
   <div className="user">
-    <Avatar className="avatar" gender="male" />
+    // All props will be directly transformed to img element
+    <Avatar gender="male" className="avatar" width="200" height="200" alt="Avatar" />
     <div className="name">{name('male')}</div>
     <div className="surname">{surname()}</div>
     <div className="username">{username()}</div>

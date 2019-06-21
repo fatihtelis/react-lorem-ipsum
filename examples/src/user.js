@@ -13,7 +13,7 @@ const User = () => {
     <div className="random-user-wrapper">
       <section className="random-user">
         <div className="user" key={key}>
-          <Avatar gender={activeGender} />
+          <Avatar gender={activeGender} width="200" height="200" alt="Avatar" />
           <div className="fullname">{fullname(activeGender)}</div>
           <div className="username">{`@${username()}`}</div>
         </div>

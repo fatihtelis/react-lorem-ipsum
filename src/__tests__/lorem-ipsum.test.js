@@ -1,7 +1,7 @@
 import React from 'react';
 import Enzyme, { shallow } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
-import LoremIpsum from '../index';
+import { LoremIpsum } from '../lorem-ipsum';
 
 Enzyme.configure({ adapter: new Adapter() });
 
@@ -12,7 +12,7 @@ describe('Lorem Ipsum', () => {
     expect(wrapper.exists()).toBe(true);
   });
   test('exists with data', () => {
-    const wrapper = shallow(<LoremIpsum p={5} />);
+    const wrapper = shallow(<LoremIpsum p={2} />);
     expect(wrapper.exists()).toBe(true);
   });
 });

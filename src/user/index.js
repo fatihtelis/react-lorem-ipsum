@@ -1,3 +1,4 @@
+import Avatar from './avatar';
 import { randomFromRange, getRandomGender } from '../utils';
 import names from '../data/names.json';
 import surnames from '../data/surnames.json';
@@ -30,5 +31,5 @@ const username = () => {
 };
 
 export {
-  name, surname, fullname, username,
+  Avatar, name, surname, fullname, username,
 };

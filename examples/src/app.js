@@ -6,7 +6,7 @@ import User from './user';
 import './style.scss';
 
 const App = () => {
-  const [tab, setTab] = useState('lorem');
+  const [tab, setTab] = useState('lipsum');
   return (
     <>
       <Header />
@@ -14,8 +14,8 @@ const App = () => {
         <div className="tab-header">
           <button
             type="button"
-            className={tab === 'lorem' ? 'active' : ''}
-            onClick={() => setTab('lorem')}
+            className={tab === 'lipsum' ? 'active' : ''}
+            onClick={() => setTab('lipsum')}
           >
             Lorem Ipsum
           </button>
@@ -27,7 +27,7 @@ const App = () => {
             Random User
           </button>
         </div>
-        <div className={`content${tab === 'lorem' ? ' active' : ''}`}>
+        <div className={`content${tab === 'lipsum' ? ' active' : ''}`}>
           <Lipsum />
         </div>
         <div className={`content${tab === 'user' ? ' active' : ''}`}>
