@@ -210,7 +210,7 @@ import { name, surname, username } from 'react-lorem-ipsum';
 
 render(
   <div className="user">
-    // All props will be directly transformed to img element
+    // All props will be directly transferred to img element
     <Avatar gender="male" className="avatar" width="200" height="200" alt="Avatar" />
     <div className="name">{name('male')}</div>
     <div className="surname">{surname()}</div>
