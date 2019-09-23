@@ -32,7 +32,7 @@ const User = () => {
           <div className="line">{'<div className="user">'}</div>
           <div className="line">{`<Avatar gender="${activeGender}">`}</div>
           <div className="line">{`<div className="fullname">{fullname('${activeGender}')}</div>`}</div>
-          <div className="line">{'<div className="username">{`@${username()`}</div>'}</div>
+          <div className="line">{'<div className="username">{`@${username()}`}</div>'}</div>
           <div className="line">{'</div>'}</div>
         </div>
       </section>
