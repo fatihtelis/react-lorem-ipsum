@@ -15,7 +15,8 @@ const surname = () => surnames[randomFromRange(0, surnames.length - 1)];
 
 const fullname = (gender = 'all') => {
   const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-  const midName = Math.random() < 0.1 ? `${letters.charAt(randomFromRange(0, letters.length - 1))}. ` : '';
+  const midName =
+    Math.random() < 0.1 ? `${letters.charAt(randomFromRange(0, letters.length - 1))}. ` : '';
   return `${name(gender)} ${midName}${surname()}`;
 };
 
@@ -30,6 +31,4 @@ const username = () => {
   return `${adjective}${seperator}${noun}${number}`;
 };
 
-export {
-  Avatar, name, surname, fullname, username,
-};
+export { Avatar, name, surname, fullname, username };

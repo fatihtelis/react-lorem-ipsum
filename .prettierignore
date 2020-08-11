@@ -1,0 +1,6 @@
+# folders
+/src/data
+/dist
+
+# All config files
+.*

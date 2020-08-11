@@ -24,7 +24,7 @@ const stDevPercentage = 0.25;
 const createWord = () => words[randomFromRange(0, words.length - 1)];
 
 // Get a punctuation for middle of the sentence randomly
-const midPunctuation = (sentenceLength) => {
+const midPunctuation = sentenceLength => {
   const punctuations = [',', ';'];
   let punctuation;
   let position;
@@ -72,9 +72,10 @@ const createParagraph = ({
   startWithLoremIpsum,
 }) => {
   const aspp = parseIntWithDefault(avgSentencesPerParagraph, defaultProps.avgSentencesPerParagraph);
-  const swli = typeof startWithLoremIpsum === 'boolean'
-    ? startWithLoremIpsum
-    : defaultProps.startWithLoremIpsum;
+  const swli =
+    typeof startWithLoremIpsum === 'boolean'
+      ? startWithLoremIpsum
+      : defaultProps.startWithLoremIpsum;
   const stDev = getStandardDeviation(aspp, stDevPercentage);
   const paragraphLength = randomPositiveFromRange(aspp - stDev, aspp + stDev);
 
@@ -90,20 +91,16 @@ const createParagraph = ({
 const loremIpsum = (props = {}) => {
   const { p, ...otherProps } = props;
   const pCount = parseIntWithDefault(p, defaultProps.p);
-  const paragraphs = [];
-  for (let i = 0; i < pCount; i += 1) {
-    paragraphs.push(
-      createParagraph({
-        firstParagraph: i === 0,
-        ...otherProps,
-      }),
-    );
-  }
-  return paragraphs;
+  return Array.from({ length: pCount }, (_, i) => i).map((_, i) =>
+    createParagraph({
+      firstParagraph: i === 0,
+      ...otherProps,
+    })
+  );
 };
 
 // Component create Lorem Ipsum as HTML
-const LoremIpsum = (props) => {
+const LoremIpsum = props => {
   const paragraphs = loremIpsum(props);
   const html = paragraphs.map(paragraph => <p key={paragraph}>{paragraph}</p>);
   return html;
@@ -116,11 +113,6 @@ LoremIpsum.propTypes = {
   startWithLoremIpsum: PropTypes.bool,
 };
 
-LoremIpsum.defaultProps = {
-  p: defaultProps.p,
-  avgWordsPerSentence: defaultProps.avgWordsPerSentence,
-  avgSentencesPerParagraph: defaultProps.avgSentencesPerParagraph,
-  startWithLoremIpsum: defaultProps.startWithLoremIpsum,
-};
+LoremIpsum.defaultProps = defaultProps;
 
 export { LoremIpsum, loremIpsum };

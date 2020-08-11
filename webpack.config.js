@@ -7,7 +7,9 @@ const htmlWebpackPlugin = new HtmlWebpackPlugin({
   filename: './index.html',
 });
 
-const copyWebpackPlugin = new CopyWebpackPlugin([{ from: 'examples/src/assets', to: 'assets' }]);
+const copyWebpackPlugin = new CopyWebpackPlugin({
+  patterns: [{ from: 'examples/src/assets', to: 'assets' }],
+});
 
 module.exports = {
   entry: path.join(__dirname, 'examples/src/index.js'),

@@ -1,6 +1,6 @@
 {
-  "extends": ["airbnb"],
-  "plugins": ["react"],
+  "extends": ["airbnb", "prettier", "prettier/react"],
+  "plugins": ["react", "import", "prettier"],
   "parser": "babel-eslint",
   "env": {
     "browser": true,
@@ -23,6 +23,7 @@
     "react/jsx-filename-extension": 0,
     "react/react-in-jsx-scope": 0,
     "react/require-default-props": 0,
+    "react/jsx-props-no-spreading": 0,
     "import/no-extraneous-dependencies": 0,
     "import/no-named-as-default": 0,
     "import/no-named-as-default-member": 0,
@@ -34,6 +35,7 @@
     "consistent-return": 0,
     "no-underscore-dangle": 0,
     "linebreak-style": 0,
-    "no-eval": 0
+    "no-eval": 0,
+    "no-template-curly-in-string": 0
   }
 }

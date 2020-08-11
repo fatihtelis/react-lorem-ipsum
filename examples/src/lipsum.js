@@ -11,10 +11,8 @@ const defaultComponentProps = {
 const Lipsum = () => {
   const [componentProps, setComponentProps] = useState(defaultComponentProps);
 
-  const handleComponentPropsChange = (e) => {
-    const {
-      type, name, value, checked,
-    } = e.target;
+  const handleComponentPropsChange = e => {
+    const { type, name, value, checked } = e.target;
     const { [name]: v, ...others } = componentProps;
     setComponentProps({ [name]: type === 'checkbox' ? checked : parseInt(value, 10), ...others });
   };
@@ -24,7 +22,7 @@ const Lipsum = () => {
   };
 
   const areAllComponentPropsDefault = Object.keys(defaultComponentProps).every(
-    prop => componentProps[prop] === defaultComponentProps[prop],
+    prop => componentProps[prop] === defaultComponentProps[prop]
   );
 
   return (
@@ -108,8 +106,8 @@ const Lipsum = () => {
             {componentProps.avgWordsPerSentence !== defaultComponentProps.avgWordsPerSentence && (
               <div className="line">{`avgWordsPerSentence={${componentProps.avgWordsPerSentence}}`}</div>
             )}
-            {componentProps.avgSentencesPerParagraph
-              !== defaultComponentProps.avgSentencesPerParagraph && (
+            {componentProps.avgSentencesPerParagraph !==
+              defaultComponentProps.avgSentencesPerParagraph && (
               <div className="line">{`avgSentencesPerParagraph={${componentProps.avgSentencesPerParagraph}}`}</div>
             )}
             {componentProps.startWithLoremIpsum !== defaultComponentProps.startWithLoremIpsum && (

@@ -1,6 +1,6 @@
 # React Lorem Ipsum
 
-**React Lorem Ipsum** is a React library including Components and Functions to **generate placeholder text**.
+**React Lorem Ipsum** is a (TypeScript supported) React library including Components and Functions to **generate placeholder text**.
 
 When you develop a mockup page or backend API is not ready for data fetching and you have to make Frontend Development with static data until it comes, `react-lorem-ipsum` will create your gibberish texts for you.
 
@@ -109,7 +109,7 @@ render(
   <div className="text-wrapper">
     <LoremIpsum p={2} />
   </div>,
-  document.getElementById('root'),
+  document.getElementById('root')
 );
 ```
 
@@ -170,7 +170,7 @@ render(
       </div>
     ))}
   </div>,
-  document.getElementById('root'),
+  document.getElementById('root')
 );
 ```
 
@@ -216,7 +216,7 @@ render(
     <div className="surname">{surname()}</div>
     <div className="username">{username()}</div>
   </div>,
-  document.getElementById('root'),
+  document.getElementById('root')
 );
 ```
 
@@ -243,7 +243,7 @@ render(
     <div className="full-name">{fullname('female')}</div>
     <div className="username">{`@${username()}`}</div>
   </div>,
-  document.getElementById('root'),
+  document.getElementById('root')
 );
 ```
 

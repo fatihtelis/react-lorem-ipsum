@@ -13,15 +13,13 @@ const Avatar = ({ gender, ...otherProps }) => {
     const randomIndex = randomFromRange(0, avatars[finalGender].length - 1);
     return avatars[finalGender][randomIndex];
   };
-  return <img src={getRandomAvatar()} {...otherProps} />;
+  return <img src={getRandomAvatar()} {...otherProps} alt="Avatar" />;
 };
 
 Avatar.propTypes = {
   gender: PropTypes.string,
 };
 
-Avatar.defaultProps = {
-  gender: defaultProps.gender,
-};
+Avatar.defaultProps = defaultProps;
 
 export default Avatar;
