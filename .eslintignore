@@ -1,2 +1,4 @@
 # Folders
-/dist
+dist
+examples/dist
+node_modules
