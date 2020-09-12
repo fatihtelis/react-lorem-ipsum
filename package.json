@@ -1,7 +1,7 @@
 {
   "name": "react-lorem-ipsum",
-  "version": "1.4.5",
-  "description": "React Component for Creating Lorem Ipsum Text as Placeholder",
+  "version": "1.4.6",
+  "description": "React Component and Function for Creating Lorem Ipsum Text as Placeholder",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/fatihtelis/react-lorem-ipsum.git"

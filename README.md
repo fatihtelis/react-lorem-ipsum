@@ -1,6 +1,8 @@
 # React Lorem Ipsum
 
-**React Lorem Ipsum** is a (TypeScript supported) React library including Components and Functions to **generate placeholder text**.
+**React Lorem Ipsum** is a (TypeScript-supported) React library including components and functions to **generate placeholder text**.
+
+[DEMO & USAGE](https://fatihtelis.github.io/react-lorem-ipsum React Lorem Ipsum Demo & Usage)
 
 When you develop a mockup page or backend API is not ready for data fetching and you have to make Frontend Development with static data until it comes, `react-lorem-ipsum` will create your gibberish texts for you.
 
