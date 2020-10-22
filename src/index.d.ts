@@ -43,6 +43,7 @@ interface LoremIpsumProps {
   avgWordsPerSentence?: string | number;
   avgSentencesPerParagraph?: string | number;
   startWithLoremIpsum?: boolean;
+  random?: boolean;
 }
 
 /**
@@ -53,6 +54,7 @@ interface LoremIpsumProps {
  *  - avgWordsPerSentence = 8 - Avarage number of words per sentence
  *  - avgSentencesPerParagraph = 8 - Avarage number of sentences per paragraph
  *  - startWithLoremIpsum = true - Start with 'Lorem ipsum odor amet...' to first sentence of first paragraph
+ *  - random = true - If disabled always generates the same text.
  */
 export const LoremIpsum: React.FC<LoremIpsumProps>;
 /**
