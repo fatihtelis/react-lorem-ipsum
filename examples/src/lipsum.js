@@ -6,6 +6,7 @@ const defaultComponentProps = {
   avgWordsPerSentence: 8,
   avgSentencesPerParagraph: 8,
   startWithLoremIpsum: true,
+  random: true,
 };
 
 const Lipsum = () => {
@@ -84,6 +85,18 @@ const Lipsum = () => {
               />
             </label>
           </div>
+          <div className="prop same-line">
+            <label>
+              Random
+              <input
+                className="checkbox"
+                type="checkbox"
+                name="random"
+                checked={componentProps.random}
+                onChange={handleComponentPropsChange}
+              />
+            </label>
+          </div>
           <button
             className="reset"
             type="button"
@@ -115,6 +128,9 @@ const Lipsum = () => {
                 {`startWithLoremIpsum${!componentProps.startWithLoremIpsum && '="false"'}`}
               </div>
             )}
+            {componentProps.random !== defaultComponentProps.random && (
+              <div className="line">{`random${!componentProps.random && '="false"'}`}</div>
+            )}
             {!areAllComponentPropsDefault && <div className="line">{'/>'}</div>}
           </div>
         </section>
@@ -126,6 +142,7 @@ const Lipsum = () => {
           avgWordsPerSentence={componentProps.avgWordsPerSentence}
           avgSentencesPerParagraph={componentProps.avgSentencesPerParagraph}
           startWithLoremIpsum={componentProps.startWithLoremIpsum}
+          random={componentProps.random}
         />
       </section>
     </div>

@@ -120,7 +120,8 @@ const loremIpsum = (props = {}) => {
 // Component create Lorem Ipsum as HTML
 const LoremIpsum = props => {
   const paragraphs = loremIpsum(props);
-  const html = paragraphs.map(paragraph => <p key={paragraph}>{paragraph}</p>);
+  // eslint-disable-next-line
+  const html = paragraphs.map((paragraph, index) => <p key={index}>{paragraph}</p>);
   return html;
 };
 
