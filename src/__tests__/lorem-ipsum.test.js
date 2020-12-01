@@ -15,4 +15,32 @@ describe('Lorem Ipsum', () => {
     const wrapper = shallow(<LoremIpsum p={2} />);
     expect(wrapper.exists()).toBe(true);
   });
+
+  test('creates random content', () => {
+    const wrapper = shallow(
+      <div>
+        <LoremIpsum p={7} />
+      </div>
+    );
+    const wrapperTwo = shallow(
+      <div>
+        <LoremIpsum p={7} />
+      </div>
+    );
+    expect(wrapper.html()).not.toBe(wrapperTwo.html());
+  });
+
+  test('creates reproducible content when random is disabled', () => {
+    const wrapper = shallow(
+      <div>
+        <LoremIpsum p={7} random={false} />
+      </div>
+    );
+    const wrapperTwo = shallow(
+      <div>
+        <LoremIpsum p={7} random={false} />
+      </div>
+    );
+    expect(wrapper.html()).toBe(wrapperTwo.html());
+  });
 });

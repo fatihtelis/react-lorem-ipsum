@@ -15,13 +15,17 @@ const defaultProps = {
   avgWordsPerSentence: 8,
   avgSentencesPerParagraph: 8,
   startWithLoremIpsum: true,
+  random: true,
 };
 
 // Standard deviation percentage for words and sentences
 const stDevPercentage = 0.25;
 
 // Get a random word from Latin word list
-const createWord = () => words[randomFromRange(0, words.length - 1)];
+const getRandomWord = () => words[randomFromRange(0, words.length - 1)];
+
+// Get a specific word from Latin word list
+const getWord = i => words[i % words.length];
 
 // Get a punctuation for middle of the sentence randomly
 const midPunctuation = sentenceLength => {
@@ -58,14 +62,27 @@ const createSentence = ({ withLoremIpsum, avgWordsPerSentence }) => {
 
   let sentence = '';
   for (let i = 0; i < sentenceLength; i += 1) {
-    sentence += `${createWord()}${midPunc.position === i ? midPunc.punctuation : ''} `;
+    sentence += `${getRandomWord()}${midPunc.position === i ? midPunc.punctuation : ''} `;
   }
   sentence = `${sentence.charAt(0).toUpperCase() + sentence.substr(1).trim()}${endPunctuation()}`;
   return sentence;
 };
 
+// Creates always the same text, averages are used as exacts.
+const createStandardParagraph = ({ avgWordsPerSentence, avgSentencesPerParagraph }) => {
+  let paragraph = '';
+  for (let i = 0; i < avgSentencesPerParagraph; i += 1) {
+    let sentence = '';
+    for (let j = 0; j < avgWordsPerSentence; j += 1) {
+      sentence += `${getWord(i * avgSentencesPerParagraph + j)} `;
+    }
+    paragraph += `${sentence.charAt(0).toUpperCase() + sentence.slice(1).trim()}. `;
+  }
+  return paragraph.trim();
+};
+
 // Create a paragraph by joining sentences
-const createParagraph = ({
+const createRandomParagraph = ({
   firstParagraph,
   avgWordsPerSentence,
   avgSentencesPerParagraph,
@@ -89,8 +106,9 @@ const createParagraph = ({
 
 // Function create plain Lorem Ipsum
 const loremIpsum = (props = {}) => {
-  const { p, ...otherProps } = props;
+  const { p, random, ...otherProps } = props;
   const pCount = parseIntWithDefault(p, defaultProps.p);
+  const createParagraph = random ? createRandomParagraph : createStandardParagraph;
   return Array.from({ length: pCount }, (_, i) => i).map((_, i) =>
     createParagraph({
       firstParagraph: i === 0,
@@ -111,6 +129,7 @@ LoremIpsum.propTypes = {
   avgWordsPerSentence: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   avgSentencesPerParagraph: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   startWithLoremIpsum: PropTypes.bool,
+  random: PropTypes.bool,
 };
 
 LoremIpsum.defaultProps = defaultProps;
