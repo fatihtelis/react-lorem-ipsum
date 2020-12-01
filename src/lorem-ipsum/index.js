@@ -71,10 +71,13 @@ const createSentence = ({ withLoremIpsum, avgWordsPerSentence }) => {
 // Creates always the same text, averages are used as exacts.
 const createStandardParagraph = ({ avgWordsPerSentence, avgSentencesPerParagraph }) => {
   let paragraph = '';
-  for (let i = 0; i < avgSentencesPerParagraph; i += 1) {
+  const awps = parseIntWithDefault(avgWordsPerSentence, defaultProps.avgWordsPerSentence);
+  const aspp = parseIntWithDefault(avgSentencesPerParagraph, defaultProps.avgSentencesPerParagraph);
+
+  for (let i = 0; i < aspp; i += 1) {
     let sentence = '';
-    for (let j = 0; j < avgWordsPerSentence; j += 1) {
-      sentence += `${getWord(i * avgSentencesPerParagraph + j)} `;
+    for (let j = 0; j < awps; j += 1) {
+      sentence += `${getWord(i * aspp + j)} `;
     }
     paragraph += `${sentence.charAt(0).toUpperCase() + sentence.slice(1).trim()}. `;
   }
