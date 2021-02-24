@@ -38,6 +38,26 @@ export const surname: () => string;
  */
 export const username: () => string;
 
+interface LoremHeadingProps {
+  p?: string | number;
+  avgWordsPerHeading?: string | number;
+  includeEndPunctuation?: boolean;
+}
+
+/**
+ * LoremHeading (Component) generates JSX
+ *
+ * Props :
+ *  - P = 1 - Number of paragraphs
+ *  - avgWordsPerHeading = 3 - Average number of words per heading
+ *  - includeEndPunctuation = true - If disabled removes end punctuation
+ */
+export const LoremHeading: React.FC<LoremHeadingProps>;
+/**
+ * loremHeading (function) returns plain text
+ */
+export const loremHeading: (LoremHeadingProps?: LoremHeadingProps) => string[];
+
 interface LoremIpsumProps {
   p?: string | number;
   avgWordsPerSentence?: string | number;
@@ -51,8 +71,8 @@ interface LoremIpsumProps {
  *
  * Props :
  *  - P = 1 - Number of paragraphs
- *  - avgWordsPerSentence = 8 - Avarage number of words per sentence
- *  - avgSentencesPerParagraph = 8 - Avarage number of sentences per paragraph
+ *  - avgWordsPerSentence = 8 - Average number of words per sentence
+ *  - avgSentencesPerParagraph = 8 - Average number of sentences per paragraph
  *  - startWithLoremIpsum = true - Start with 'Lorem ipsum odor amet...' to first sentence of first paragraph
  *  - random = true - If disabled always generates the same text.
  */
