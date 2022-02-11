@@ -4,6 +4,8 @@
 
 [DEMO & USAGE](https://fatihtelis.github.io/react-lorem-ipsum)
 
+[USAGE IN A LOREM IPSUM GENERATOR](https://10015.io/tools/lorem-ipsum-generator)
+
 When you develop a mockup page or backend API is not ready for data fetching and you have to make Frontend Development with static data until it comes, `react-lorem-ipsum` will create your gibberish texts for you.
 
 In addition to Lorem Ipsum text, you can generate **random avatars, names, surnames, full names** and **usernames** to fill the fields about users randomly.
